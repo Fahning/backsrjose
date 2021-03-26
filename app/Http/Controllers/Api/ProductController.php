@@ -1,86 +1,74 @@
 <?php
 
-namespace App\Http\Controllers\Api\Api;
+namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ProductResource;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Retorna todos os produtos cadastrados.
      *
-     * @return \Illuminate\Http\Response
+     * @return ProductResource
      */
-    public function index()
+    public function index(): ProductResource
     {
-        //
+        return new ProductResource(Product::all());
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Cadastra um novo produto.
      *
-     * @return \Illuminate\Http\Response
+     * @param  Request  $request
+     * @return ProductResource
      */
-    public function create()
+    public function store(Request $request): ProductResource
     {
-        //
+        $data = $request->all();
+        $product = new Product();
+        $product->fill($data);
+        $product->save();
+        return new ProductResource($product);
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Mostra um produto por id.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Product $product
+     * @return ProductResource
      */
-    public function store(Request $request)
+    public function show(Product $product): ProductResource
     {
-        //
+        return new ProductResource($product);
     }
 
     /**
-     * Display the specified resource.
+     * Atualiza produto por id passado.
      *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param Product $product
+     * @return ProductResource
      */
-    public function show(Product $product)
+    public function update(Request $request, Product $product): ProductResource
     {
-        //
+        $data = $request->all();
+        $product->update($data);
+        return new ProductResource($product);
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Deleta produto por id passado.
      *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
+     * @param Product $product
+     * @return ProductResource
+     * @throws \Exception
      */
-    public function edit(Product $product)
+    public function destroy(Product $product): ProductResource
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Product $product)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Product $product)
-    {
-        //
+        $product->delete();
+        return new ProductResource($product);
     }
 }

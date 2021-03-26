@@ -1,86 +1,76 @@
 <?php
 
-namespace App\Http\Controllers\Api\Api;
+namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ClientResource;
 use App\Models\Client;
+use Exception;
 use Illuminate\Http\Request;
 
 class ClientController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Retorna todos os clientes cadastrados.
      *
-     * @return \Illuminate\Http\Response
+     * @return ClientResource
      */
-    public function index()
+    public function index(): ClientResource
     {
-        //
+        return new ClientResource(Client::all());
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Cadastra um novo cliente.
      *
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return ClientResource
      */
-    public function create()
+    public function store(Request $request): ClientResource
     {
-        //
+        $data = $request->all();
+        $client = new Client();
+        $client->fill($data);
+        $client->save();
+        return new ClientResource($client);
+    }
+
+
+    /**
+     * Retorna dados de um cliente específico por id.
+     *
+     * @param  Client  $client
+     * @return ClientResource
+     */
+    public function show(Client $client): ClientResource
+    {
+        return new ClientResource($client);
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Atualiza um Cliente informado por ID
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param Client $client
+     * @return ClientResource
      */
-    public function store(Request $request)
+    public function update(Request $request, Client $client): ClientResource
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Client  $client
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Client $client)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Client  $client
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Client $client)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Client  $client
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Client $client)
-    {
-        //
+        $data = $request->all();
+        $client->update($data);
+        return new ClientResource($client);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Client  $client
-     * @return \Illuminate\Http\Response
+     * @param Client $client
+     * @return ClientResource
+     * @throws Exception
      */
-    public function destroy(Client $client)
+    public function destroy(Client $client): ClientResource
     {
-        //
+        $client->delete();
+        return new ClientResource($client);
     }
 }

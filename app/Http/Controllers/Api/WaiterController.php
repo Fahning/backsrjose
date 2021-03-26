@@ -3,84 +3,73 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\WaiterResource;
 use App\Models\Waiter;
 use Illuminate\Http\Request;
 
 class WaiterController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Retornar todos os funcionários.
      *
-     * @return \Illuminate\Http\Response
+     * @return WaiterResource
      */
-    public function index()
+    public function index(): WaiterResource
     {
-        //
+        return new WaiterResource(Waiter::all());
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Mostra um funcionário por id.
      *
-     * @return \Illuminate\Http\Response
+     * @param Waiter $waiter
+     * @return WaiterResource
      */
-    public function create()
+    public function show(Waiter $waiter): WaiterResource
     {
-        //
+        return new WaiterResource($waiter);
+    }
+
+
+    /**
+     * Salva novo funcionário.
+     *
+     * @param Request $request
+     * @return WaiterResource
+     */
+    public function store(Request $request): WaiterResource
+    {
+        $data = $request->all();
+        $waiter = new Waiter();
+        $waiter->fill($data);
+        $waiter->save();
+        return new WaiterResource($waiter);
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Atualiza funcionário por id passado
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param Waiter $waiter
+     * @return WaiterResource
      */
-    public function store(Request $request)
+    public function update(Request $request, Waiter $waiter): WaiterResource
     {
-        //
+        $data = $request->all();
+        $waiter->update($data);
+        return new WaiterResource($waiter);
     }
 
     /**
-     * Display the specified resource.
+     * Deleta funcionário por id passado.
      *
-     * @param  \App\Models\Waiter  $waiter
-     * @return \Illuminate\Http\Response
+     * @param Waiter $waiter
+     * @return WaiterResource
+     * @throws \Exception
      */
-    public function show(Waiter $waiter)
+    public function destroy(Waiter $waiter): WaiterResource
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Waiter  $waiter
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Waiter $waiter)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Waiter  $waiter
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Waiter $waiter)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Waiter  $waiter
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Waiter $waiter)
-    {
-        //
+        $waiter->delete();
+        return new WaiterResource($waiter);
     }
 }

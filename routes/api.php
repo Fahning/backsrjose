@@ -3,17 +3,38 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
+//grupo de clientes
+Route::group([
+    'prefix' => 'clients'
+], function () {
+    Route::get('all', 'ClientController@index');
+    Route::post('new', 'ClientController@store');
+    Route::get('show/{client}', 'ClientController@show');
+    Route::put('update/{client}', 'ClientController@update');
+    Route::delete('delete/{client}', 'ClientController@destroy');
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+});
+
+//grupo de produtos
+Route::group([
+    'prefix' => 'products'
+], function () {
+    Route::get('all', 'ProductController@index');
+    Route::post('new', 'ProductController@store');
+    Route::get('show/{product}', 'ProductController@show');
+    Route::put('update/{product}', 'ProductController@update');
+    Route::delete('delete/{product}', 'ProductController@destroy');
+
+});
+
+//grupo de produtos
+Route::group([
+    'prefix' => 'waiters'
+], function () {
+    Route::get('all', 'WaiterController@index');
+    Route::post('new', 'WaiterController@store');
+    Route::get('show/{waiter}', 'WaiterController@show');
+    Route::put('update/{waiter}', 'WaiterController@update');
+    Route::delete('delete/{waiter}', 'WaiterController@destroy');
+
 });
