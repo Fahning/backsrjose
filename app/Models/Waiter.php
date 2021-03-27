@@ -10,6 +10,7 @@ class Waiter extends Model
     use HasFactory;
 
     protected $fillable = [
+        'id',
         'name',
         'email',
         'phone',

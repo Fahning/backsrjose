@@ -3,84 +3,76 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\OrderProductResource;
 use App\Models\OrderProduct;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class OrderProductController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Retorna todas as comandas e produtos.
      *
-     * @return \Illuminate\Http\Response
+     * @return AnonymousResourceCollection
      */
-    public function index()
+    public function index(): AnonymousResourceCollection
     {
-        //
+        return OrderProductResource::collection(OrderProduct::all());
+    }
+
+
+    /**
+     * Cadastra nova comanda e produto.
+     *
+     * @param Request $request
+     * @return OrderProductResource
+     */
+    public function store(Request $request): OrderProductResource
+    {
+        $data = $request->all();
+        $orderProduct = new OrderProduct();
+        $orderProduct->fill($data);
+        $orderProduct->save();
+        return new OrderProductResource($orderProduct);
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Retorna comanda produto por id passado
      *
-     * @return \Illuminate\Http\Response
+     * @param OrderProduct $orderProduct
+     * @return OrderProductResource
      */
-    public function create()
+    public function show(OrderProduct $orderProduct): OrderProductResource
     {
-        //
+        return new OrderProductResource($orderProduct);
+    }
+
+
+    /**
+     * Atualiza comanda produto por id passado.
+     *
+     * @param Request $request
+     * @param OrderProduct $orderProduct
+     * @return OrderProductResource
+     */
+    public function update(Request $request, OrderProduct $orderProduct): OrderProductResource
+    {
+        $data = $request->all();
+        $orderProduct->update($data);
+        return new OrderProductResource($orderProduct);
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Deleta comanda produto por id passado.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param OrderProduct $orderProduct
+     * @return OrderProductResource
+     * @throws Exception
      */
-    public function store(Request $request)
+    public function destroy(OrderProduct $orderProduct): OrderProductResource
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\OrderProduct  $orderProduct
-     * @return \Illuminate\Http\Response
-     */
-    public function show(OrderProduct $orderProduct)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\OrderProduct  $orderProduct
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(OrderProduct $orderProduct)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\OrderProduct  $orderProduct
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, OrderProduct $orderProduct)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\OrderProduct  $orderProduct
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(OrderProduct $orderProduct)
-    {
-        //
+        $orderProduct->delete();
+        return new OrderProductResource($orderProduct);
     }
 }

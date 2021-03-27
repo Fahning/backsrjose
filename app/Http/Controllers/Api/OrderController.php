@@ -3,84 +3,75 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\OrderResource;
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class OrderController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Retorna todas as comandas registradas.
      *
-     * @return \Illuminate\Http\Response
+     * @return AnonymousResourceCollection
      */
-    public function index()
+    public function index(): AnonymousResourceCollection
     {
-        //
+        return OrderResource::collection(Order::all());
+    }
+
+
+    /**
+     * Cadastra nova comanda.
+     *
+     * @param Request $request
+     * @return OrderResource
+     */
+    public function store(Request $request): OrderResource
+    {
+        $data = $request->all();
+        $order = new Order();
+        $order->fill($data);
+        $order->save();
+        return new OrderResource($order);
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Retorna uma comanda por id passado
      *
-     * @return \Illuminate\Http\Response
+     * @param Order $order
+     * @return OrderResource
      */
-    public function create()
+    public function show(Order $order): OrderResource
     {
-        //
+        return new OrderResource($order);
+    }
+
+
+    /**
+     * Atualiza comanda por id passado.
+     *
+     * @param Request $request
+     * @param Order $order
+     * @return OrderResource
+     */
+    public function update(Request $request, Order $order): OrderResource
+    {
+        $data = $request->all();
+        $order->update($data);
+        return new OrderResource($order);
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Delete comanda por id passado.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Order $order
+     * @return OrderResource
+     * @throws \Exception
      */
-    public function store(Request $request)
+    public function destroy(Order $order): OrderResource
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Order $order)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Order $order)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Order $order)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Order $order)
-    {
-        //
+        $order->delete();
+        return new OrderResource($order);
     }
 }

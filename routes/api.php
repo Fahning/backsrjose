@@ -38,3 +38,27 @@ Route::group([
     Route::delete('delete/{waiter}', 'WaiterController@destroy');
 
 });
+
+//grupo de comandas
+Route::group([
+    'prefix' => 'orders'
+], function () {
+    Route::get('all', 'OrderController@index');
+    Route::post('new', 'OrderController@store');
+    Route::get('show/{order}', 'OrderController@show');
+    Route::put('update/{order}', 'OrderController@update');
+    Route::delete('delete/{order}', 'OrderController@destroy');
+
+});
+
+//grupo de comandas
+Route::group([
+    'prefix' => 'ordersproduct'
+], function () {
+    Route::get('all', 'OrderProductController@index');
+    Route::post('new', 'OrderProductController@store');
+    Route::get('show/{order}', 'OrderProductController@show');
+    Route::put('update/{order}', 'OrderProductController@update');
+    Route::delete('delete/{order}', 'OrderProductController@destroy');
+
+});
