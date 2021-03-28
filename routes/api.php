@@ -1,14 +1,12 @@
 <?php
-
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-//grupo de clientes
 Route::group([
     'prefix' => 'clients'
 ], function () {
     Route::get('all', 'ClientController@index');
     Route::post('new', 'ClientController@store');
+    Route::get('findPhone/{phone}', 'ClientController@findPhone');
     Route::get('show/{client}', 'ClientController@show');
     Route::put('update/{client}', 'ClientController@update');
     Route::delete('delete/{client}', 'ClientController@destroy');
@@ -45,6 +43,9 @@ Route::group([
 ], function () {
     Route::get('all', 'OrderController@index');
     Route::post('new', 'OrderController@store');
+    Route::post('makeOrder', 'OrderController@makeOrder');
+    Route::get('sellsResume', 'OrderController@sellsResume');
+    Route::get('waiterMonth/{waiter_id}', 'OrderController@waiterMonth');
     Route::get('show/{order}', 'OrderController@show');
     Route::put('update/{order}', 'OrderController@update');
     Route::delete('delete/{order}', 'OrderController@destroy');

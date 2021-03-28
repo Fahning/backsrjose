@@ -48,6 +48,24 @@ class ClientController extends Controller
     }
 
     /**
+     * Retorna dados de um cliente específico por telefone.
+     *
+     * @param $phone
+     * @return ClientResource
+     */
+    public function findPhone($phone): ClientResource
+    {
+        $phone = '%'.$phone.'%';
+        $client = Client::where('phone', 'like', $phone)->get();
+        if(count($client) <= 0){
+            $client = [
+                'Falha' => 'Cliente não cadastrado'
+            ];
+        }
+        return new ClientResource($client);
+    }
+
+    /**
      * Atualiza um Cliente informado por ID
      *
      * @param Request $request
