@@ -8,7 +8,11 @@ use App\Models\OrderProduct;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
-
+/**
+ * @group OrdersProducts
+ *
+ * APIs para gerenciar OrdersProducts
+ */
 class OrderProductController extends Controller
 {
     /**

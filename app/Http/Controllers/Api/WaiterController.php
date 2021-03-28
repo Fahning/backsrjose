@@ -7,6 +7,12 @@ use App\Http\Resources\WaiterResource;
 use App\Models\Waiter;
 use Illuminate\Http\Request;
 
+/**
+ * @group Waiters
+ *
+ * APIs para gerenciar Waiters
+ */
+
 class WaiterController extends Controller
 {
     /**

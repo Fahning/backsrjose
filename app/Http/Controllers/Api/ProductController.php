@@ -7,6 +7,12 @@ use App\Http\Resources\ProductResource;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
+/**
+ * @group Products
+ *
+ * APIs para gerenciar Products
+ */
+
 class ProductController extends Controller
 {
     /**

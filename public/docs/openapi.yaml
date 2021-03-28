@@ -1,0 +1,1009 @@
+openapi: 3.0.3
+info:
+    title: 'Doc API Sistema Simples Restaurante'
+    description: 'Api para sistema simples de gerenciamento de restaurante'
+    version: 1.0.0
+servers:
+    -
+        url: 'http://localhost'
+paths:
+    /api/clients/all:
+        get:
+            summary: 'Retorna todos os clientes cadastrados.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                200:
+                    description: ''
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    data: [{ id: 12, name: asdsa, email: 123213@asdasd, phone: '123123123', created_at: '2021-03-28T01:52:18.000000Z', updated_at: '2021-03-28T01:52:18.000000Z' }, { id: 13, name: Eduarda, email: eduarda@hotmail.com, phone: '828888888', created_at: '2021-03-28T02:01:01.000000Z', updated_at: '2021-03-28T02:01:01.000000Z' }]
+                                properties:
+                                    data: { type: array, example: [{ id: 12, name: asdsa, email: 123213@asdasd, phone: '123123123', created_at: '2021-03-28T01:52:18.000000Z', updated_at: '2021-03-28T01:52:18.000000Z' }, { id: 13, name: Eduarda, email: eduarda@hotmail.com, phone: '828888888', created_at: '2021-03-28T02:01:01.000000Z', updated_at: '2021-03-28T02:01:01.000000Z' }], items: { type: object } }
+            tags:
+                - Clients
+            security: []
+    /api/clients/new:
+        post:
+            summary: 'Cadastra um novo cliente.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses: {  }
+            tags:
+                - Clients
+            security: []
+    '/api/clients/findPhone/{phone}':
+        get:
+            summary: 'Retorna dados de um cliente específico por telefone.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                200:
+                    description: ''
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    data: { Falha: 'Cliente não cadastrado' }
+                                properties:
+                                    data: { type: object, example: { Falha: 'Cliente não cadastrado' } }
+            tags:
+                - Clients
+            security: []
+        parameters:
+            -
+                in: path
+                name: phone
+                description: ''
+                example: ab
+                required: true
+                schema:
+                    type: string
+    '/api/clients/show/{client}':
+        get:
+            summary: 'Retorna dados de um cliente específico por id.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                404:
+                    description: ''
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    message: 'No query results for model [App\Models\Client] hic'
+                                    exception: Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+                                    file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Exceptions\Handler.php'
+                                    line: 381
+                                    trace: [{ file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Exceptions\Handler.php', line: 330, function: prepareException, class: Illuminate\Foundation\Exceptions\Handler, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\nunomaduro\collision\src\Adapters\Laravel\ExceptionHandler.php', line: 54, function: render, class: Illuminate\Foundation\Exceptions\Handler, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Pipeline.php', line: 51, function: render, class: NunoMaduro\Collision\Adapters\Laravel\ExceptionHandler, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 172, function: handleException, class: Illuminate\Routing\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php', line: 127, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php', line: 103, function: handleRequest, class: Illuminate\Routing\Middleware\ThrottleRequests, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php', line: 55, function: handleRequestUsingNamedLimiter, class: Illuminate\Routing\Middleware\ThrottleRequests, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Illuminate\Routing\Middleware\ThrottleRequests, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 103, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Router.php', line: 695, function: then, class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Router.php', line: 670, function: runRouteWithinStack, class: Illuminate\Routing\Router, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Router.php', line: 636, function: runRoute, class: Illuminate\Routing\Router, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Router.php', line: 625, function: dispatchToRoute, class: Illuminate\Routing\Router, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php', line: 166, function: dispatch, class: Illuminate\Routing\Router, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 128, function: 'Illuminate\Foundation\Http\{closure}', class: Illuminate\Foundation\Http\Kernel, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php', line: 21, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Illuminate\Foundation\Http\Middleware\TransformsRequest, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php', line: 21, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Illuminate\Foundation\Http\Middleware\TransformsRequest, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ValidatePostSize.php', line: 27, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Illuminate\Foundation\Http\Middleware\ValidatePostSize, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance.php', line: 86, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\fruitcake\laravel-cors\src\HandleCors.php', line: 57, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Fruitcake\Cors\HandleCors, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\fideloper\proxy\src\TrustProxies.php', line: 57, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Fideloper\Proxy\TrustProxies, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 103, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php', line: 141, function: then, class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php', line: 110, function: sendRequestThroughRouter, class: Illuminate\Foundation\Http\Kernel, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php', line: 324, function: handle, class: Illuminate\Foundation\Http\Kernel, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php', line: 305, function: callLaravelOrLumenRoute, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php', line: 76, function: makeApiCall, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php', line: 51, function: makeResponseCall, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php', line: 41, function: makeResponseCallIfEnabledAndNoSuccessResponses, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Generator.php', line: 236, function: __invoke, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Generator.php', line: 172, function: iterateThroughStrategies, class: Knuckles\Scribe\Extracting\Generator, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Generator.php', line: 127, function: fetchResponses, class: Knuckles\Scribe\Extracting\Generator, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Commands\GenerateDocumentation.php', line: 119, function: processRoute, class: Knuckles\Scribe\Extracting\Generator, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Commands\GenerateDocumentation.php', line: 73, function: processRoutes, class: Knuckles\Scribe\Commands\GenerateDocumentation, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php', line: 36, function: handle, class: Knuckles\Scribe\Commands\GenerateDocumentation, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Container\Util.php', line: 40, function: 'Illuminate\Container\{closure}', class: Illuminate\Container\BoundMethod, type: '::' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php', line: 93, function: unwrapIfClosure, class: Illuminate\Container\Util, type: '::' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php', line: 37, function: callBoundMethod, class: Illuminate\Container\BoundMethod, type: '::' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Container\Container.php', line: 611, function: call, class: Illuminate\Container\BoundMethod, type: '::' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Console\Command.php', line: 136, function: call, class: Illuminate\Container\Container, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\symfony\console\Command\Command.php', line: 256, function: execute, class: Illuminate\Console\Command, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Console\Command.php', line: 121, function: run, class: Symfony\Component\Console\Command\Command, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\symfony\console\Application.php', line: 971, function: run, class: Illuminate\Console\Command, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\symfony\console\Application.php', line: 290, function: doRunCommand, class: Symfony\Component\Console\Application, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\symfony\console\Application.php', line: 166, function: doRun, class: Symfony\Component\Console\Application, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Console\Application.php', line: 92, function: run, class: Symfony\Component\Console\Application, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Console\Kernel.php', line: 129, function: run, class: Illuminate\Console\Application, type: '->' }, { file: 'C:\laragon\www\barSrJose\artisan', line: 37, function: handle, class: Illuminate\Foundation\Console\Kernel, type: '->' }]
+                                properties:
+                                    message: { type: string, example: 'No query results for model [App\Models\Client] hic' }
+                                    exception: { type: string, example: Symfony\Component\HttpKernel\Exception\NotFoundHttpException }
+                                    file: { type: string, example: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Exceptions\Handler.php' }
+                                    line: { type: integer, example: 381 }
+                                    trace: { type: array, example: [{ file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Exceptions\Handler.php', line: 330, function: prepareException, class: Illuminate\Foundation\Exceptions\Handler, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\nunomaduro\collision\src\Adapters\Laravel\ExceptionHandler.php', line: 54, function: render, class: Illuminate\Foundation\Exceptions\Handler, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Pipeline.php', line: 51, function: render, class: NunoMaduro\Collision\Adapters\Laravel\ExceptionHandler, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 172, function: handleException, class: Illuminate\Routing\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php', line: 127, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php', line: 103, function: handleRequest, class: Illuminate\Routing\Middleware\ThrottleRequests, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php', line: 55, function: handleRequestUsingNamedLimiter, class: Illuminate\Routing\Middleware\ThrottleRequests, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Illuminate\Routing\Middleware\ThrottleRequests, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 103, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Router.php', line: 695, function: then, class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Router.php', line: 670, function: runRouteWithinStack, class: Illuminate\Routing\Router, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Router.php', line: 636, function: runRoute, class: Illuminate\Routing\Router, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Router.php', line: 625, function: dispatchToRoute, class: Illuminate\Routing\Router, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php', line: 166, function: dispatch, class: Illuminate\Routing\Router, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 128, function: 'Illuminate\Foundation\Http\{closure}', class: Illuminate\Foundation\Http\Kernel, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php', line: 21, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Illuminate\Foundation\Http\Middleware\TransformsRequest, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php', line: 21, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Illuminate\Foundation\Http\Middleware\TransformsRequest, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ValidatePostSize.php', line: 27, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Illuminate\Foundation\Http\Middleware\ValidatePostSize, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance.php', line: 86, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\fruitcake\laravel-cors\src\HandleCors.php', line: 57, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Fruitcake\Cors\HandleCors, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\fideloper\proxy\src\TrustProxies.php', line: 57, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Fideloper\Proxy\TrustProxies, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 103, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php', line: 141, function: then, class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php', line: 110, function: sendRequestThroughRouter, class: Illuminate\Foundation\Http\Kernel, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php', line: 324, function: handle, class: Illuminate\Foundation\Http\Kernel, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php', line: 305, function: callLaravelOrLumenRoute, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php', line: 76, function: makeApiCall, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php', line: 51, function: makeResponseCall, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php', line: 41, function: makeResponseCallIfEnabledAndNoSuccessResponses, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Generator.php', line: 236, function: __invoke, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Generator.php', line: 172, function: iterateThroughStrategies, class: Knuckles\Scribe\Extracting\Generator, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Generator.php', line: 127, function: fetchResponses, class: Knuckles\Scribe\Extracting\Generator, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Commands\GenerateDocumentation.php', line: 119, function: processRoute, class: Knuckles\Scribe\Extracting\Generator, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Commands\GenerateDocumentation.php', line: 73, function: processRoutes, class: Knuckles\Scribe\Commands\GenerateDocumentation, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php', line: 36, function: handle, class: Knuckles\Scribe\Commands\GenerateDocumentation, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Container\Util.php', line: 40, function: 'Illuminate\Container\{closure}', class: Illuminate\Container\BoundMethod, type: '::' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php', line: 93, function: unwrapIfClosure, class: Illuminate\Container\Util, type: '::' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php', line: 37, function: callBoundMethod, class: Illuminate\Container\BoundMethod, type: '::' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Container\Container.php', line: 611, function: call, class: Illuminate\Container\BoundMethod, type: '::' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Console\Command.php', line: 136, function: call, class: Illuminate\Container\Container, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\symfony\console\Command\Command.php', line: 256, function: execute, class: Illuminate\Console\Command, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Console\Command.php', line: 121, function: run, class: Symfony\Component\Console\Command\Command, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\symfony\console\Application.php', line: 971, function: run, class: Illuminate\Console\Command, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\symfony\console\Application.php', line: 290, function: doRunCommand, class: Symfony\Component\Console\Application, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\symfony\console\Application.php', line: 166, function: doRun, class: Symfony\Component\Console\Application, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Console\Application.php', line: 92, function: run, class: Symfony\Component\Console\Application, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Console\Kernel.php', line: 129, function: run, class: Illuminate\Console\Application, type: '->' }, { file: 'C:\laragon\www\barSrJose\artisan', line: 37, function: handle, class: Illuminate\Foundation\Console\Kernel, type: '->' }], items: { type: object } }
+            tags:
+                - Clients
+            security: []
+        parameters:
+            -
+                in: path
+                name: client
+                description: ''
+                example: hic
+                required: true
+                schema:
+                    type: string
+    '/api/clients/update/{client}':
+        put:
+            summary: 'Atualiza um Cliente informado por ID'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses: {  }
+            tags:
+                - Clients
+            security: []
+        parameters:
+            -
+                in: path
+                name: client
+                description: ''
+                example: quidem
+                required: true
+                schema:
+                    type: string
+    '/api/clients/delete/{client}':
+        delete:
+            summary: 'Remove the specified resource from storage.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses: {  }
+            tags:
+                - Clients
+            security: []
+        parameters:
+            -
+                in: path
+                name: client
+                description: ''
+                example: quidem
+                required: true
+                schema:
+                    type: string
+    /api/orders/all:
+        get:
+            summary: 'Retorna todas as comandas registradas.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                200:
+                    description: ''
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    data: [{ id: 42, total: 204.7, discount: 0, commission: 0, commands: '0', client_id: 13, waiter_id: 2, created_at: '2021-03-28T02:06:17.000000Z', updated_at: '2021-03-28T02:06:17.000000Z', client: { id: 13, name: Eduarda, email: eduarda@hotmail.com, phone: '828888888', created_at: '2021-03-28T02:01:01.000000Z', updated_at: '2021-03-28T02:01:01.000000Z' }, waiter: { id: 2, name: 'Cícero Fahning', email: cicerofahning@hotmail.com, phone: '82999384018', role: garçom, created_at: '2021-03-27T13:57:37.000000Z', updated_at: '2021-03-27T13:57:37.000000Z' } }, { id: 43, total: 0, discount: 0, commission: 0, commands: '0', client_id: 13, waiter_id: 2, created_at: '2021-03-28T03:29:53.000000Z', updated_at: '2021-03-28T03:29:53.000000Z', client: { id: 13, name: Eduarda, email: eduarda@hotmail.com, phone: '828888888', created_at: '2021-03-28T02:01:01.000000Z', updated_at: '2021-03-28T02:01:01.000000Z' }, waiter: { id: 2, name: 'Cícero Fahning', email: cicerofahning@hotmail.com, phone: '82999384018', role: garçom, created_at: '2021-03-27T13:57:37.000000Z', updated_at: '2021-03-27T13:57:37.000000Z' } }, { id: 44, total: 26.7, discount: 0, commission: 0, commands: '0', client_id: 13, waiter_id: 2, created_at: '2021-03-28T03:30:57.000000Z', updated_at: '2021-03-28T03:30:59.000000Z', client: { id: 13, name: Eduarda, email: eduarda@hotmail.com, phone: '828888888', created_at: '2021-03-28T02:01:01.000000Z', updated_at: '2021-03-28T02:01:01.000000Z' }, waiter: { id: 2, name: 'Cícero Fahning', email: cicerofahning@hotmail.com, phone: '82999384018', role: garçom, created_at: '2021-03-27T13:57:37.000000Z', updated_at: '2021-03-27T13:57:37.000000Z' } }, { id: 45, total: 195.8, discount: 0, commission: 0, commands: '0', client_id: 13, waiter_id: 2, created_at: '2021-03-28T20:03:06.000000Z', updated_at: '2021-03-28T20:03:06.000000Z', client: { id: 13, name: Eduarda, email: eduarda@hotmail.com, phone: '828888888', created_at: '2021-03-28T02:01:01.000000Z', updated_at: '2021-03-28T02:01:01.000000Z' }, waiter: { id: 2, name: 'Cícero Fahning', email: cicerofahning@hotmail.com, phone: '82999384018', role: garçom, created_at: '2021-03-27T13:57:37.000000Z', updated_at: '2021-03-27T13:57:37.000000Z' } }]
+                                properties:
+                                    data: { type: array, example: [{ id: 42, total: 204.7, discount: 0, commission: 0, commands: '0', client_id: 13, waiter_id: 2, created_at: '2021-03-28T02:06:17.000000Z', updated_at: '2021-03-28T02:06:17.000000Z', client: { id: 13, name: Eduarda, email: eduarda@hotmail.com, phone: '828888888', created_at: '2021-03-28T02:01:01.000000Z', updated_at: '2021-03-28T02:01:01.000000Z' }, waiter: { id: 2, name: 'Cícero Fahning', email: cicerofahning@hotmail.com, phone: '82999384018', role: garçom, created_at: '2021-03-27T13:57:37.000000Z', updated_at: '2021-03-27T13:57:37.000000Z' } }, { id: 43, total: 0, discount: 0, commission: 0, commands: '0', client_id: 13, waiter_id: 2, created_at: '2021-03-28T03:29:53.000000Z', updated_at: '2021-03-28T03:29:53.000000Z', client: { id: 13, name: Eduarda, email: eduarda@hotmail.com, phone: '828888888', created_at: '2021-03-28T02:01:01.000000Z', updated_at: '2021-03-28T02:01:01.000000Z' }, waiter: { id: 2, name: 'Cícero Fahning', email: cicerofahning@hotmail.com, phone: '82999384018', role: garçom, created_at: '2021-03-27T13:57:37.000000Z', updated_at: '2021-03-27T13:57:37.000000Z' } }, { id: 44, total: 26.7, discount: 0, commission: 0, commands: '0', client_id: 13, waiter_id: 2, created_at: '2021-03-28T03:30:57.000000Z', updated_at: '2021-03-28T03:30:59.000000Z', client: { id: 13, name: Eduarda, email: eduarda@hotmail.com, phone: '828888888', created_at: '2021-03-28T02:01:01.000000Z', updated_at: '2021-03-28T02:01:01.000000Z' }, waiter: { id: 2, name: 'Cícero Fahning', email: cicerofahning@hotmail.com, phone: '82999384018', role: garçom, created_at: '2021-03-27T13:57:37.000000Z', updated_at: '2021-03-27T13:57:37.000000Z' } }, { id: 45, total: 195.8, discount: 0, commission: 0, commands: '0', client_id: 13, waiter_id: 2, created_at: '2021-03-28T20:03:06.000000Z', updated_at: '2021-03-28T20:03:06.000000Z', client: { id: 13, name: Eduarda, email: eduarda@hotmail.com, phone: '828888888', created_at: '2021-03-28T02:01:01.000000Z', updated_at: '2021-03-28T02:01:01.000000Z' }, waiter: { id: 2, name: 'Cícero Fahning', email: cicerofahning@hotmail.com, phone: '82999384018', role: garçom, created_at: '2021-03-27T13:57:37.000000Z', updated_at: '2021-03-27T13:57:37.000000Z' } }], items: { type: object } }
+            tags:
+                - Orders
+            security: []
+    /api/orders/new:
+        post:
+            summary: 'Cadastra nova comanda.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses: {  }
+            tags:
+                - Orders
+            security: []
+    /api/orders/makeOrder:
+        post:
+            summary: 'Registra pedido realizado pelo client'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses: {  }
+            tags:
+                - Orders
+            security: []
+    /api/orders/sellsResume:
+        get:
+            summary: 'Retorna resumo de vendas do dia, mensal, total de itens vendidos, item mais vendido e item menos vendido.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                201:
+                    description: ''
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    today: { total_qnt: 4, total_price: 427.2 }
+                                    month: { total_qnt: 4, total_price: 427.2 }
+                                    vendas: [{ id: 45, total: 195.8, discount: 0, commission: 0, commands: '0', client_id: 13, waiter_id: 2, created_at: '2021-03-28T20:03:06.000000Z', updated_at: '2021-03-28T20:03:06.000000Z' }, { id: 44, total: 26.7, discount: 0, commission: 0, commands: '0', client_id: 13, waiter_id: 2, created_at: '2021-03-28T03:30:57.000000Z', updated_at: '2021-03-28T03:30:59.000000Z' }, { id: 43, total: 0, discount: 0, commission: 0, commands: '0', client_id: 13, waiter_id: 2, created_at: '2021-03-28T03:29:53.000000Z', updated_at: '2021-03-28T03:29:53.000000Z' }, { id: 42, total: 204.7, discount: 0, commission: 0, commands: '0', client_id: 13, waiter_id: 2, created_at: '2021-03-28T02:06:17.000000Z', updated_at: '2021-03-28T02:06:17.000000Z' }]
+                                    total_itens: 278
+                                    bestSellers: { Qnt: 16, product_id: 9, name: Cerveja5 }
+                                    lessSold: { Qnt: 1, product_id: 3, name: Cerveja }
+                                properties:
+                                    today: { type: object, example: { total_qnt: 4, total_price: 427.2 } }
+                                    month: { type: object, example: { total_qnt: 4, total_price: 427.2 } }
+                                    vendas: { type: array, example: [{ id: 45, total: 195.8, discount: 0, commission: 0, commands: '0', client_id: 13, waiter_id: 2, created_at: '2021-03-28T20:03:06.000000Z', updated_at: '2021-03-28T20:03:06.000000Z' }, { id: 44, total: 26.7, discount: 0, commission: 0, commands: '0', client_id: 13, waiter_id: 2, created_at: '2021-03-28T03:30:57.000000Z', updated_at: '2021-03-28T03:30:59.000000Z' }, { id: 43, total: 0, discount: 0, commission: 0, commands: '0', client_id: 13, waiter_id: 2, created_at: '2021-03-28T03:29:53.000000Z', updated_at: '2021-03-28T03:29:53.000000Z' }, { id: 42, total: 204.7, discount: 0, commission: 0, commands: '0', client_id: 13, waiter_id: 2, created_at: '2021-03-28T02:06:17.000000Z', updated_at: '2021-03-28T02:06:17.000000Z' }], items: { type: object } }
+                                    total_itens: { type: integer, example: 278 }
+                                    bestSellers: { type: object, example: { Qnt: 16, product_id: 9, name: Cerveja5 } }
+                                    lessSold: { type: object, example: { Qnt: 1, product_id: 3, name: Cerveja } }
+            tags:
+                - Orders
+            security: []
+    '/api/orders/waiterMonth/{waiter_id}':
+        get:
+            summary: 'Retorna resumo de vendas do dia, mensal, total de itens vendidos, item mais vendido e item menos vendido.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                500:
+                    description: ''
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    message: 'Trying to get property ''waiter'' of non-object'
+                                    exception: ErrorException
+                                    file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Http\Resources\DelegatesToResource.php'
+                                    line: 136
+                                    trace: [{ file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Http\Resources\DelegatesToResource.php', line: 136, function: handleError, class: Illuminate\Foundation\Bootstrap\HandleExceptions, type: '->' }, { file: 'C:\laragon\www\barSrJose\app\Http\Controllers\Api\OrderController.php', line: 129, function: __get, class: Illuminate\Http\Resources\Json\JsonResource, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Controller.php', line: 54, function: waiterMonth, class: App\Http\Controllers\Api\OrderController, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\ControllerDispatcher.php', line: 45, function: callAction, class: Illuminate\Routing\Controller, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Route.php', line: 254, function: dispatch, class: Illuminate\Routing\ControllerDispatcher, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Route.php', line: 197, function: runController, class: Illuminate\Routing\Route, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Router.php', line: 693, function: run, class: Illuminate\Routing\Route, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 128, function: 'Illuminate\Routing\{closure}', class: Illuminate\Routing\Router, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Middleware\SubstituteBindings.php', line: 50, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Illuminate\Routing\Middleware\SubstituteBindings, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php', line: 127, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php', line: 103, function: handleRequest, class: Illuminate\Routing\Middleware\ThrottleRequests, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php', line: 55, function: handleRequestUsingNamedLimiter, class: Illuminate\Routing\Middleware\ThrottleRequests, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Illuminate\Routing\Middleware\ThrottleRequests, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 103, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Router.php', line: 695, function: then, class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Router.php', line: 670, function: runRouteWithinStack, class: Illuminate\Routing\Router, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Router.php', line: 636, function: runRoute, class: Illuminate\Routing\Router, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Router.php', line: 625, function: dispatchToRoute, class: Illuminate\Routing\Router, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php', line: 166, function: dispatch, class: Illuminate\Routing\Router, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 128, function: 'Illuminate\Foundation\Http\{closure}', class: Illuminate\Foundation\Http\Kernel, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php', line: 21, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Illuminate\Foundation\Http\Middleware\TransformsRequest, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php', line: 21, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Illuminate\Foundation\Http\Middleware\TransformsRequest, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ValidatePostSize.php', line: 27, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Illuminate\Foundation\Http\Middleware\ValidatePostSize, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance.php', line: 86, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\fruitcake\laravel-cors\src\HandleCors.php', line: 57, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Fruitcake\Cors\HandleCors, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\fideloper\proxy\src\TrustProxies.php', line: 57, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Fideloper\Proxy\TrustProxies, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 103, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php', line: 141, function: then, class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php', line: 110, function: sendRequestThroughRouter, class: Illuminate\Foundation\Http\Kernel, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php', line: 324, function: handle, class: Illuminate\Foundation\Http\Kernel, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php', line: 305, function: callLaravelOrLumenRoute, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php', line: 76, function: makeApiCall, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php', line: 51, function: makeResponseCall, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php', line: 41, function: makeResponseCallIfEnabledAndNoSuccessResponses, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Generator.php', line: 236, function: __invoke, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Generator.php', line: 172, function: iterateThroughStrategies, class: Knuckles\Scribe\Extracting\Generator, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Generator.php', line: 127, function: fetchResponses, class: Knuckles\Scribe\Extracting\Generator, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Commands\GenerateDocumentation.php', line: 119, function: processRoute, class: Knuckles\Scribe\Extracting\Generator, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Commands\GenerateDocumentation.php', line: 73, function: processRoutes, class: Knuckles\Scribe\Commands\GenerateDocumentation, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php', line: 36, function: handle, class: Knuckles\Scribe\Commands\GenerateDocumentation, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Container\Util.php', line: 40, function: 'Illuminate\Container\{closure}', class: Illuminate\Container\BoundMethod, type: '::' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php', line: 93, function: unwrapIfClosure, class: Illuminate\Container\Util, type: '::' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php', line: 37, function: callBoundMethod, class: Illuminate\Container\BoundMethod, type: '::' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Container\Container.php', line: 611, function: call, class: Illuminate\Container\BoundMethod, type: '::' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Console\Command.php', line: 136, function: call, class: Illuminate\Container\Container, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\symfony\console\Command\Command.php', line: 256, function: execute, class: Illuminate\Console\Command, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Console\Command.php', line: 121, function: run, class: Symfony\Component\Console\Command\Command, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\symfony\console\Application.php', line: 971, function: run, class: Illuminate\Console\Command, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\symfony\console\Application.php', line: 290, function: doRunCommand, class: Symfony\Component\Console\Application, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\symfony\console\Application.php', line: 166, function: doRun, class: Symfony\Component\Console\Application, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Console\Application.php', line: 92, function: run, class: Symfony\Component\Console\Application, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Console\Kernel.php', line: 129, function: run, class: Illuminate\Console\Application, type: '->' }, { file: 'C:\laragon\www\barSrJose\artisan', line: 37, function: handle, class: Illuminate\Foundation\Console\Kernel, type: '->' }]
+                                properties:
+                                    message: { type: string, example: 'Trying to get property ''waiter'' of non-object' }
+                                    exception: { type: string, example: ErrorException }
+                                    file: { type: string, example: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Http\Resources\DelegatesToResource.php' }
+                                    line: { type: integer, example: 136 }
+                                    trace: { type: array, example: [{ file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Http\Resources\DelegatesToResource.php', line: 136, function: handleError, class: Illuminate\Foundation\Bootstrap\HandleExceptions, type: '->' }, { file: 'C:\laragon\www\barSrJose\app\Http\Controllers\Api\OrderController.php', line: 129, function: __get, class: Illuminate\Http\Resources\Json\JsonResource, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Controller.php', line: 54, function: waiterMonth, class: App\Http\Controllers\Api\OrderController, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\ControllerDispatcher.php', line: 45, function: callAction, class: Illuminate\Routing\Controller, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Route.php', line: 254, function: dispatch, class: Illuminate\Routing\ControllerDispatcher, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Route.php', line: 197, function: runController, class: Illuminate\Routing\Route, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Router.php', line: 693, function: run, class: Illuminate\Routing\Route, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 128, function: 'Illuminate\Routing\{closure}', class: Illuminate\Routing\Router, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Middleware\SubstituteBindings.php', line: 50, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Illuminate\Routing\Middleware\SubstituteBindings, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php', line: 127, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php', line: 103, function: handleRequest, class: Illuminate\Routing\Middleware\ThrottleRequests, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php', line: 55, function: handleRequestUsingNamedLimiter, class: Illuminate\Routing\Middleware\ThrottleRequests, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Illuminate\Routing\Middleware\ThrottleRequests, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 103, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Router.php', line: 695, function: then, class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Router.php', line: 670, function: runRouteWithinStack, class: Illuminate\Routing\Router, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Router.php', line: 636, function: runRoute, class: Illuminate\Routing\Router, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Router.php', line: 625, function: dispatchToRoute, class: Illuminate\Routing\Router, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php', line: 166, function: dispatch, class: Illuminate\Routing\Router, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 128, function: 'Illuminate\Foundation\Http\{closure}', class: Illuminate\Foundation\Http\Kernel, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php', line: 21, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Illuminate\Foundation\Http\Middleware\TransformsRequest, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php', line: 21, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Illuminate\Foundation\Http\Middleware\TransformsRequest, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ValidatePostSize.php', line: 27, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Illuminate\Foundation\Http\Middleware\ValidatePostSize, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance.php', line: 86, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\fruitcake\laravel-cors\src\HandleCors.php', line: 57, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Fruitcake\Cors\HandleCors, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\fideloper\proxy\src\TrustProxies.php', line: 57, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Fideloper\Proxy\TrustProxies, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 103, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php', line: 141, function: then, class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php', line: 110, function: sendRequestThroughRouter, class: Illuminate\Foundation\Http\Kernel, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php', line: 324, function: handle, class: Illuminate\Foundation\Http\Kernel, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php', line: 305, function: callLaravelOrLumenRoute, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php', line: 76, function: makeApiCall, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php', line: 51, function: makeResponseCall, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php', line: 41, function: makeResponseCallIfEnabledAndNoSuccessResponses, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Generator.php', line: 236, function: __invoke, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Generator.php', line: 172, function: iterateThroughStrategies, class: Knuckles\Scribe\Extracting\Generator, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Generator.php', line: 127, function: fetchResponses, class: Knuckles\Scribe\Extracting\Generator, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Commands\GenerateDocumentation.php', line: 119, function: processRoute, class: Knuckles\Scribe\Extracting\Generator, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Commands\GenerateDocumentation.php', line: 73, function: processRoutes, class: Knuckles\Scribe\Commands\GenerateDocumentation, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php', line: 36, function: handle, class: Knuckles\Scribe\Commands\GenerateDocumentation, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Container\Util.php', line: 40, function: 'Illuminate\Container\{closure}', class: Illuminate\Container\BoundMethod, type: '::' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php', line: 93, function: unwrapIfClosure, class: Illuminate\Container\Util, type: '::' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php', line: 37, function: callBoundMethod, class: Illuminate\Container\BoundMethod, type: '::' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Container\Container.php', line: 611, function: call, class: Illuminate\Container\BoundMethod, type: '::' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Console\Command.php', line: 136, function: call, class: Illuminate\Container\Container, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\symfony\console\Command\Command.php', line: 256, function: execute, class: Illuminate\Console\Command, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Console\Command.php', line: 121, function: run, class: Symfony\Component\Console\Command\Command, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\symfony\console\Application.php', line: 971, function: run, class: Illuminate\Console\Command, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\symfony\console\Application.php', line: 290, function: doRunCommand, class: Symfony\Component\Console\Application, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\symfony\console\Application.php', line: 166, function: doRun, class: Symfony\Component\Console\Application, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Console\Application.php', line: 92, function: run, class: Symfony\Component\Console\Application, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Console\Kernel.php', line: 129, function: run, class: Illuminate\Console\Application, type: '->' }, { file: 'C:\laragon\www\barSrJose\artisan', line: 37, function: handle, class: Illuminate\Foundation\Console\Kernel, type: '->' }], items: { type: object } }
+            tags:
+                - Orders
+            security: []
+        parameters:
+            -
+                in: path
+                name: waiter_id
+                description: ''
+                example: a
+                required: true
+                schema:
+                    type: string
+    '/api/orders/show/{order}':
+        get:
+            summary: 'Retorna uma comanda por id passado'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                404:
+                    description: ''
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    message: 'No query results for model [App\Models\Order] sapiente'
+                                    exception: Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+                                    file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Exceptions\Handler.php'
+                                    line: 381
+                                    trace: [{ file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Exceptions\Handler.php', line: 330, function: prepareException, class: Illuminate\Foundation\Exceptions\Handler, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\nunomaduro\collision\src\Adapters\Laravel\ExceptionHandler.php', line: 54, function: render, class: Illuminate\Foundation\Exceptions\Handler, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Pipeline.php', line: 51, function: render, class: NunoMaduro\Collision\Adapters\Laravel\ExceptionHandler, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 172, function: handleException, class: Illuminate\Routing\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php', line: 127, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php', line: 103, function: handleRequest, class: Illuminate\Routing\Middleware\ThrottleRequests, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php', line: 55, function: handleRequestUsingNamedLimiter, class: Illuminate\Routing\Middleware\ThrottleRequests, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Illuminate\Routing\Middleware\ThrottleRequests, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 103, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Router.php', line: 695, function: then, class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Router.php', line: 670, function: runRouteWithinStack, class: Illuminate\Routing\Router, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Router.php', line: 636, function: runRoute, class: Illuminate\Routing\Router, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Router.php', line: 625, function: dispatchToRoute, class: Illuminate\Routing\Router, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php', line: 166, function: dispatch, class: Illuminate\Routing\Router, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 128, function: 'Illuminate\Foundation\Http\{closure}', class: Illuminate\Foundation\Http\Kernel, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php', line: 21, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Illuminate\Foundation\Http\Middleware\TransformsRequest, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php', line: 21, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Illuminate\Foundation\Http\Middleware\TransformsRequest, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ValidatePostSize.php', line: 27, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Illuminate\Foundation\Http\Middleware\ValidatePostSize, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance.php', line: 86, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\fruitcake\laravel-cors\src\HandleCors.php', line: 57, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Fruitcake\Cors\HandleCors, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\fideloper\proxy\src\TrustProxies.php', line: 57, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Fideloper\Proxy\TrustProxies, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 103, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php', line: 141, function: then, class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php', line: 110, function: sendRequestThroughRouter, class: Illuminate\Foundation\Http\Kernel, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php', line: 324, function: handle, class: Illuminate\Foundation\Http\Kernel, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php', line: 305, function: callLaravelOrLumenRoute, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php', line: 76, function: makeApiCall, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php', line: 51, function: makeResponseCall, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php', line: 41, function: makeResponseCallIfEnabledAndNoSuccessResponses, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Generator.php', line: 236, function: __invoke, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Generator.php', line: 172, function: iterateThroughStrategies, class: Knuckles\Scribe\Extracting\Generator, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Generator.php', line: 127, function: fetchResponses, class: Knuckles\Scribe\Extracting\Generator, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Commands\GenerateDocumentation.php', line: 119, function: processRoute, class: Knuckles\Scribe\Extracting\Generator, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Commands\GenerateDocumentation.php', line: 73, function: processRoutes, class: Knuckles\Scribe\Commands\GenerateDocumentation, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php', line: 36, function: handle, class: Knuckles\Scribe\Commands\GenerateDocumentation, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Container\Util.php', line: 40, function: 'Illuminate\Container\{closure}', class: Illuminate\Container\BoundMethod, type: '::' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php', line: 93, function: unwrapIfClosure, class: Illuminate\Container\Util, type: '::' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php', line: 37, function: callBoundMethod, class: Illuminate\Container\BoundMethod, type: '::' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Container\Container.php', line: 611, function: call, class: Illuminate\Container\BoundMethod, type: '::' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Console\Command.php', line: 136, function: call, class: Illuminate\Container\Container, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\symfony\console\Command\Command.php', line: 256, function: execute, class: Illuminate\Console\Command, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Console\Command.php', line: 121, function: run, class: Symfony\Component\Console\Command\Command, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\symfony\console\Application.php', line: 971, function: run, class: Illuminate\Console\Command, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\symfony\console\Application.php', line: 290, function: doRunCommand, class: Symfony\Component\Console\Application, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\symfony\console\Application.php', line: 166, function: doRun, class: Symfony\Component\Console\Application, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Console\Application.php', line: 92, function: run, class: Symfony\Component\Console\Application, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Console\Kernel.php', line: 129, function: run, class: Illuminate\Console\Application, type: '->' }, { file: 'C:\laragon\www\barSrJose\artisan', line: 37, function: handle, class: Illuminate\Foundation\Console\Kernel, type: '->' }]
+                                properties:
+                                    message: { type: string, example: 'No query results for model [App\Models\Order] sapiente' }
+                                    exception: { type: string, example: Symfony\Component\HttpKernel\Exception\NotFoundHttpException }
+                                    file: { type: string, example: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Exceptions\Handler.php' }
+                                    line: { type: integer, example: 381 }
+                                    trace: { type: array, example: [{ file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Exceptions\Handler.php', line: 330, function: prepareException, class: Illuminate\Foundation\Exceptions\Handler, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\nunomaduro\collision\src\Adapters\Laravel\ExceptionHandler.php', line: 54, function: render, class: Illuminate\Foundation\Exceptions\Handler, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Pipeline.php', line: 51, function: render, class: NunoMaduro\Collision\Adapters\Laravel\ExceptionHandler, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 172, function: handleException, class: Illuminate\Routing\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php', line: 127, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php', line: 103, function: handleRequest, class: Illuminate\Routing\Middleware\ThrottleRequests, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php', line: 55, function: handleRequestUsingNamedLimiter, class: Illuminate\Routing\Middleware\ThrottleRequests, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Illuminate\Routing\Middleware\ThrottleRequests, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 103, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Router.php', line: 695, function: then, class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Router.php', line: 670, function: runRouteWithinStack, class: Illuminate\Routing\Router, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Router.php', line: 636, function: runRoute, class: Illuminate\Routing\Router, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Router.php', line: 625, function: dispatchToRoute, class: Illuminate\Routing\Router, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php', line: 166, function: dispatch, class: Illuminate\Routing\Router, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 128, function: 'Illuminate\Foundation\Http\{closure}', class: Illuminate\Foundation\Http\Kernel, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php', line: 21, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Illuminate\Foundation\Http\Middleware\TransformsRequest, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php', line: 21, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Illuminate\Foundation\Http\Middleware\TransformsRequest, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ValidatePostSize.php', line: 27, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Illuminate\Foundation\Http\Middleware\ValidatePostSize, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance.php', line: 86, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\fruitcake\laravel-cors\src\HandleCors.php', line: 57, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Fruitcake\Cors\HandleCors, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\fideloper\proxy\src\TrustProxies.php', line: 57, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Fideloper\Proxy\TrustProxies, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 103, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php', line: 141, function: then, class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php', line: 110, function: sendRequestThroughRouter, class: Illuminate\Foundation\Http\Kernel, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php', line: 324, function: handle, class: Illuminate\Foundation\Http\Kernel, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php', line: 305, function: callLaravelOrLumenRoute, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php', line: 76, function: makeApiCall, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php', line: 51, function: makeResponseCall, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php', line: 41, function: makeResponseCallIfEnabledAndNoSuccessResponses, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Generator.php', line: 236, function: __invoke, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Generator.php', line: 172, function: iterateThroughStrategies, class: Knuckles\Scribe\Extracting\Generator, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Generator.php', line: 127, function: fetchResponses, class: Knuckles\Scribe\Extracting\Generator, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Commands\GenerateDocumentation.php', line: 119, function: processRoute, class: Knuckles\Scribe\Extracting\Generator, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Commands\GenerateDocumentation.php', line: 73, function: processRoutes, class: Knuckles\Scribe\Commands\GenerateDocumentation, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php', line: 36, function: handle, class: Knuckles\Scribe\Commands\GenerateDocumentation, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Container\Util.php', line: 40, function: 'Illuminate\Container\{closure}', class: Illuminate\Container\BoundMethod, type: '::' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php', line: 93, function: unwrapIfClosure, class: Illuminate\Container\Util, type: '::' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php', line: 37, function: callBoundMethod, class: Illuminate\Container\BoundMethod, type: '::' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Container\Container.php', line: 611, function: call, class: Illuminate\Container\BoundMethod, type: '::' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Console\Command.php', line: 136, function: call, class: Illuminate\Container\Container, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\symfony\console\Command\Command.php', line: 256, function: execute, class: Illuminate\Console\Command, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Console\Command.php', line: 121, function: run, class: Symfony\Component\Console\Command\Command, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\symfony\console\Application.php', line: 971, function: run, class: Illuminate\Console\Command, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\symfony\console\Application.php', line: 290, function: doRunCommand, class: Symfony\Component\Console\Application, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\symfony\console\Application.php', line: 166, function: doRun, class: Symfony\Component\Console\Application, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Console\Application.php', line: 92, function: run, class: Symfony\Component\Console\Application, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Console\Kernel.php', line: 129, function: run, class: Illuminate\Console\Application, type: '->' }, { file: 'C:\laragon\www\barSrJose\artisan', line: 37, function: handle, class: Illuminate\Foundation\Console\Kernel, type: '->' }], items: { type: object } }
+            tags:
+                - Orders
+            security: []
+        parameters:
+            -
+                in: path
+                name: order
+                description: ''
+                example: sapiente
+                required: true
+                schema:
+                    type: string
+    '/api/orders/update/{order}':
+        put:
+            summary: 'Atualiza comanda por id passado.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses: {  }
+            tags:
+                - Orders
+            security: []
+        parameters:
+            -
+                in: path
+                name: order
+                description: ''
+                example: architecto
+                required: true
+                schema:
+                    type: string
+    '/api/orders/delete/{order}':
+        delete:
+            summary: 'Delete comanda por id passado.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses: {  }
+            tags:
+                - Orders
+            security: []
+        parameters:
+            -
+                in: path
+                name: order
+                description: ''
+                example: dolorem
+                required: true
+                schema:
+                    type: string
+    /api/ordersproduct/all:
+        get:
+            summary: 'Retorna todas as comandas e produtos.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                200:
+                    description: ''
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    data: [{ id: 2, quantity: 2, product_id: 3, order_id: 2, created_at: '2021-03-27T14:32:11.000000Z', updated_at: '2021-03-27T14:32:11.000000Z', price: null, product: { id: 3, name: Cerveja, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 3, quantity: 2, product_id: 6, order_id: 13, created_at: '2021-03-27T21:00:36.000000Z', updated_at: '2021-03-27T21:00:36.000000Z', price: null, product: { id: 6, name: Cerveja2, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 4, quantity: 3, product_id: 9, order_id: 13, created_at: '2021-03-27T21:00:36.000000Z', updated_at: '2021-03-27T21:00:36.000000Z', price: null, product: { id: 9, name: Cerveja5, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 5, quantity: 5, product_id: 12, order_id: 13, created_at: '2021-03-27T21:00:36.000000Z', updated_at: '2021-03-27T21:00:36.000000Z', price: null, product: { id: 12, name: Cerveja8, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 15, quantity: 2, product_id: 6, order_id: 17, created_at: '2021-03-27T21:09:09.000000Z', updated_at: '2021-03-27T21:09:09.000000Z', price: 8.9, product: { id: 6, name: Cerveja2, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 16, quantity: 3, product_id: 9, order_id: 17, created_at: '2021-03-27T21:09:09.000000Z', updated_at: '2021-03-27T21:09:09.000000Z', price: 8.9, product: { id: 9, name: Cerveja5, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 17, quantity: 5, product_id: 12, order_id: 17, created_at: '2021-03-27T21:09:10.000000Z', updated_at: '2021-03-27T21:09:10.000000Z', price: 8.9, product: { id: 12, name: Cerveja8, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 21, quantity: 2, product_id: 6, order_id: 19, created_at: '2021-03-27T21:12:30.000000Z', updated_at: '2021-03-27T21:12:30.000000Z', price: 8.9, product: { id: 6, name: Cerveja2, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 22, quantity: 3, product_id: 9, order_id: 19, created_at: '2021-03-27T21:12:30.000000Z', updated_at: '2021-03-27T21:12:30.000000Z', price: 8.9, product: { id: 9, name: Cerveja5, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 23, quantity: 5, product_id: 12, order_id: 19, created_at: '2021-03-27T21:12:30.000000Z', updated_at: '2021-03-27T21:12:30.000000Z', price: 8.9, product: { id: 12, name: Cerveja8, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 24, quantity: 2, product_id: 6, order_id: 20, created_at: '2021-03-27T21:13:55.000000Z', updated_at: '2021-03-27T21:13:55.000000Z', price: 8.9, product: { id: 6, name: Cerveja2, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 25, quantity: 3, product_id: 9, order_id: 20, created_at: '2021-03-27T21:13:55.000000Z', updated_at: '2021-03-27T21:13:55.000000Z', price: 8.9, product: { id: 9, name: Cerveja5, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 26, quantity: 5, product_id: 12, order_id: 20, created_at: '2021-03-27T21:13:55.000000Z', updated_at: '2021-03-27T21:13:55.000000Z', price: 8.9, product: { id: 12, name: Cerveja8, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 27, quantity: 3, product_id: 10, order_id: 21, created_at: '2021-03-27T21:15:12.000000Z', updated_at: '2021-03-27T21:15:12.000000Z', price: 8.9, product: { id: 10, name: Cerveja6, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 28, quantity: 2, product_id: 9, order_id: 21, created_at: '2021-03-27T21:15:12.000000Z', updated_at: '2021-03-27T21:15:12.000000Z', price: 8.9, product: { id: 9, name: Cerveja5, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 29, quantity: 3, product_id: 10, order_id: 22, created_at: '2021-03-27T21:15:22.000000Z', updated_at: '2021-03-27T21:15:22.000000Z', price: 8.9, product: { id: 10, name: Cerveja6, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 30, quantity: 2, product_id: 9, order_id: 22, created_at: '2021-03-27T21:15:22.000000Z', updated_at: '2021-03-27T21:15:22.000000Z', price: 8.9, product: { id: 9, name: Cerveja5, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 31, quantity: 3, product_id: 10, order_id: 23, created_at: '2021-03-27T21:15:30.000000Z', updated_at: '2021-03-27T21:15:30.000000Z', price: 8.9, product: { id: 10, name: Cerveja6, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 32, quantity: 2, product_id: 9, order_id: 23, created_at: '2021-03-27T21:15:30.000000Z', updated_at: '2021-03-27T21:15:30.000000Z', price: 8.9, product: { id: 9, name: Cerveja5, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 33, quantity: 5, product_id: 8, order_id: 23, created_at: '2021-03-27T21:15:30.000000Z', updated_at: '2021-03-27T21:15:30.000000Z', price: 8.9, product: { id: 8, name: Cerveja4, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 34, quantity: 1, product_id: 10, order_id: 24, created_at: '2021-03-27T21:15:55.000000Z', updated_at: '2021-03-27T21:15:55.000000Z', price: 8.9, product: { id: 10, name: Cerveja6, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 35, quantity: 1, product_id: 10, order_id: 25, created_at: '2021-03-27T21:16:03.000000Z', updated_at: '2021-03-27T21:16:03.000000Z', price: 8.9, product: { id: 10, name: Cerveja6, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 36, quantity: 9, product_id: 9, order_id: 25, created_at: '2021-03-27T21:16:03.000000Z', updated_at: '2021-03-27T21:16:03.000000Z', price: 8.9, product: { id: 9, name: Cerveja5, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 37, quantity: 9, product_id: 9, order_id: 26, created_at: '2021-03-27T21:16:47.000000Z', updated_at: '2021-03-27T21:16:47.000000Z', price: 8.9, product: { id: 9, name: Cerveja5, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 38, quantity: 1, product_id: 10, order_id: 26, created_at: '2021-03-27T21:16:47.000000Z', updated_at: '2021-03-27T21:16:47.000000Z', price: 8.9, product: { id: 10, name: Cerveja6, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 39, quantity: 9, product_id: 9, order_id: 27, created_at: '2021-03-27T21:20:24.000000Z', updated_at: '2021-03-27T21:20:24.000000Z', price: 8.9, product: { id: 9, name: Cerveja5, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 40, quantity: 1, product_id: 10, order_id: 27, created_at: '2021-03-27T21:20:24.000000Z', updated_at: '2021-03-27T21:20:24.000000Z', price: 8.9, product: { id: 10, name: Cerveja6, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 41, quantity: 2, product_id: 10, order_id: 28, created_at: '2021-03-27T21:35:53.000000Z', updated_at: '2021-03-27T21:35:53.000000Z', price: 8.9, product: { id: 10, name: Cerveja6, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 42, quantity: 2, product_id: 9, order_id: 29, created_at: '2021-03-27T22:27:20.000000Z', updated_at: '2021-03-27T22:27:20.000000Z', price: 8.9, product: { id: 9, name: Cerveja5, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 43, quantity: 2, product_id: 12, order_id: 30, created_at: '2021-03-27T22:28:23.000000Z', updated_at: '2021-03-27T22:28:23.000000Z', price: 8.9, product: { id: 12, name: Cerveja8, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 44, quantity: 2, product_id: 10, order_id: 31, created_at: '2021-03-27T22:59:14.000000Z', updated_at: '2021-03-27T22:59:14.000000Z', price: 8.9, product: { id: 10, name: Cerveja6, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 45, quantity: 3, product_id: 12, order_id: 31, created_at: '2021-03-27T22:59:14.000000Z', updated_at: '2021-03-27T22:59:14.000000Z', price: 8.9, product: { id: 12, name: Cerveja8, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 46, quantity: 2, product_id: 10, order_id: 32, created_at: '2021-03-27T23:01:14.000000Z', updated_at: '2021-03-27T23:01:14.000000Z', price: 8.9, product: { id: 10, name: Cerveja6, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 47, quantity: 3, product_id: 12, order_id: 32, created_at: '2021-03-27T23:01:14.000000Z', updated_at: '2021-03-27T23:01:14.000000Z', price: 8.9, product: { id: 12, name: Cerveja8, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 48, quantity: 2, product_id: 10, order_id: 33, created_at: '2021-03-27T23:01:30.000000Z', updated_at: '2021-03-27T23:01:30.000000Z', price: 8.9, product: { id: 10, name: Cerveja6, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 49, quantity: 3, product_id: 12, order_id: 33, created_at: '2021-03-27T23:01:30.000000Z', updated_at: '2021-03-27T23:01:30.000000Z', price: 8.9, product: { id: 12, name: Cerveja8, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 50, quantity: 2, product_id: 10, order_id: 34, created_at: '2021-03-27T23:02:08.000000Z', updated_at: '2021-03-27T23:02:08.000000Z', price: 8.9, product: { id: 10, name: Cerveja6, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 51, quantity: 3, product_id: 12, order_id: 34, created_at: '2021-03-27T23:02:08.000000Z', updated_at: '2021-03-27T23:02:08.000000Z', price: 8.9, product: { id: 12, name: Cerveja8, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 52, quantity: 2, product_id: 10, order_id: 35, created_at: '2021-03-27T23:02:52.000000Z', updated_at: '2021-03-27T23:02:52.000000Z', price: 8.9, product: { id: 10, name: Cerveja6, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 53, quantity: 3, product_id: 12, order_id: 35, created_at: '2021-03-27T23:02:52.000000Z', updated_at: '2021-03-27T23:02:52.000000Z', price: 8.9, product: { id: 12, name: Cerveja8, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 54, quantity: 2, product_id: 10, order_id: 36, created_at: '2021-03-27T23:03:52.000000Z', updated_at: '2021-03-27T23:03:52.000000Z', price: 8.9, product: { id: 10, name: Cerveja6, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 55, quantity: 3, product_id: 12, order_id: 36, created_at: '2021-03-27T23:03:52.000000Z', updated_at: '2021-03-27T23:03:52.000000Z', price: 8.9, product: { id: 12, name: Cerveja8, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 56, quantity: 23, product_id: 8, order_id: 37, created_at: '2021-03-27T23:36:06.000000Z', updated_at: '2021-03-27T23:36:06.000000Z', price: 8.9, product: { id: 8, name: Cerveja4, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 57, quantity: 23, product_id: 9, order_id: 37, created_at: '2021-03-27T23:36:06.000000Z', updated_at: '2021-03-27T23:36:06.000000Z', price: 8.9, product: { id: 9, name: Cerveja5, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 58, quantity: 23, product_id: 8, order_id: 38, created_at: '2021-03-27T23:37:01.000000Z', updated_at: '2021-03-27T23:37:01.000000Z', price: 8.9, product: { id: 8, name: Cerveja4, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 59, quantity: 23, product_id: 9, order_id: 38, created_at: '2021-03-27T23:37:01.000000Z', updated_at: '2021-03-27T23:37:01.000000Z', price: 8.9, product: { id: 9, name: Cerveja5, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 60, quantity: 2, product_id: 4, order_id: 39, created_at: '2021-03-27T23:44:03.000000Z', updated_at: '2021-03-27T23:44:03.000000Z', price: 8.9, product: { id: 4, name: Cerveja, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 61, quantity: 3, product_id: 9, order_id: 39, created_at: '2021-03-27T23:44:03.000000Z', updated_at: '2021-03-27T23:44:03.000000Z', price: 8.9, product: { id: 9, name: Cerveja5, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 62, quantity: 2, product_id: 5, order_id: 40, created_at: '2021-03-27T23:48:01.000000Z', updated_at: '2021-03-27T23:48:01.000000Z', price: 8.9, product: { id: 5, name: Cerveja0, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 63, quantity: 2, product_id: 9, order_id: 41, created_at: '2021-03-27T23:50:47.000000Z', updated_at: '2021-03-27T23:50:47.000000Z', price: 8.9, product: { id: 9, name: Cerveja5, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 64, quantity: 23, product_id: 4, order_id: 42, created_at: '2021-03-28T02:06:17.000000Z', updated_at: '2021-03-28T02:06:17.000000Z', price: 8.9, product: { id: 4, name: Cerveja, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: { id: 42, total: 204.7, discount: 0, commission: 0, commands: '0', client_id: 13, waiter_id: 2, created_at: '2021-03-28T02:06:17.000000Z', updated_at: '2021-03-28T02:06:17.000000Z' } }, { id: 65, quantity: 2, product_id: 9, order_id: 44, created_at: '2021-03-28T03:30:59.000000Z', updated_at: '2021-03-28T03:30:59.000000Z', price: 8.9, product: { id: 9, name: Cerveja5, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: { id: 44, total: 26.7, discount: 0, commission: 0, commands: '0', client_id: 13, waiter_id: 2, created_at: '2021-03-28T03:30:57.000000Z', updated_at: '2021-03-28T03:30:59.000000Z' } }, { id: 66, quantity: 1, product_id: 8, order_id: 44, created_at: '2021-03-28T03:30:59.000000Z', updated_at: '2021-03-28T03:30:59.000000Z', price: 8.9, product: { id: 8, name: Cerveja4, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: { id: 44, total: 26.7, discount: 0, commission: 0, commands: '0', client_id: 13, waiter_id: 2, created_at: '2021-03-28T03:30:57.000000Z', updated_at: '2021-03-28T03:30:59.000000Z' } }, { id: 67, quantity: 22, product_id: 5, order_id: 45, created_at: '2021-03-28T20:03:06.000000Z', updated_at: '2021-03-28T20:03:06.000000Z', price: 8.9, product: { id: 5, name: Cerveja0, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: { id: 45, total: 195.8, discount: 0, commission: 0, commands: '0', client_id: 13, waiter_id: 2, created_at: '2021-03-28T20:03:06.000000Z', updated_at: '2021-03-28T20:03:06.000000Z' } }]
+                                properties:
+                                    data: { type: array, example: [{ id: 2, quantity: 2, product_id: 3, order_id: 2, created_at: '2021-03-27T14:32:11.000000Z', updated_at: '2021-03-27T14:32:11.000000Z', price: null, product: { id: 3, name: Cerveja, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 3, quantity: 2, product_id: 6, order_id: 13, created_at: '2021-03-27T21:00:36.000000Z', updated_at: '2021-03-27T21:00:36.000000Z', price: null, product: { id: 6, name: Cerveja2, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 4, quantity: 3, product_id: 9, order_id: 13, created_at: '2021-03-27T21:00:36.000000Z', updated_at: '2021-03-27T21:00:36.000000Z', price: null, product: { id: 9, name: Cerveja5, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 5, quantity: 5, product_id: 12, order_id: 13, created_at: '2021-03-27T21:00:36.000000Z', updated_at: '2021-03-27T21:00:36.000000Z', price: null, product: { id: 12, name: Cerveja8, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 15, quantity: 2, product_id: 6, order_id: 17, created_at: '2021-03-27T21:09:09.000000Z', updated_at: '2021-03-27T21:09:09.000000Z', price: 8.9, product: { id: 6, name: Cerveja2, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 16, quantity: 3, product_id: 9, order_id: 17, created_at: '2021-03-27T21:09:09.000000Z', updated_at: '2021-03-27T21:09:09.000000Z', price: 8.9, product: { id: 9, name: Cerveja5, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 17, quantity: 5, product_id: 12, order_id: 17, created_at: '2021-03-27T21:09:10.000000Z', updated_at: '2021-03-27T21:09:10.000000Z', price: 8.9, product: { id: 12, name: Cerveja8, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 21, quantity: 2, product_id: 6, order_id: 19, created_at: '2021-03-27T21:12:30.000000Z', updated_at: '2021-03-27T21:12:30.000000Z', price: 8.9, product: { id: 6, name: Cerveja2, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 22, quantity: 3, product_id: 9, order_id: 19, created_at: '2021-03-27T21:12:30.000000Z', updated_at: '2021-03-27T21:12:30.000000Z', price: 8.9, product: { id: 9, name: Cerveja5, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 23, quantity: 5, product_id: 12, order_id: 19, created_at: '2021-03-27T21:12:30.000000Z', updated_at: '2021-03-27T21:12:30.000000Z', price: 8.9, product: { id: 12, name: Cerveja8, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 24, quantity: 2, product_id: 6, order_id: 20, created_at: '2021-03-27T21:13:55.000000Z', updated_at: '2021-03-27T21:13:55.000000Z', price: 8.9, product: { id: 6, name: Cerveja2, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 25, quantity: 3, product_id: 9, order_id: 20, created_at: '2021-03-27T21:13:55.000000Z', updated_at: '2021-03-27T21:13:55.000000Z', price: 8.9, product: { id: 9, name: Cerveja5, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 26, quantity: 5, product_id: 12, order_id: 20, created_at: '2021-03-27T21:13:55.000000Z', updated_at: '2021-03-27T21:13:55.000000Z', price: 8.9, product: { id: 12, name: Cerveja8, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 27, quantity: 3, product_id: 10, order_id: 21, created_at: '2021-03-27T21:15:12.000000Z', updated_at: '2021-03-27T21:15:12.000000Z', price: 8.9, product: { id: 10, name: Cerveja6, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 28, quantity: 2, product_id: 9, order_id: 21, created_at: '2021-03-27T21:15:12.000000Z', updated_at: '2021-03-27T21:15:12.000000Z', price: 8.9, product: { id: 9, name: Cerveja5, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 29, quantity: 3, product_id: 10, order_id: 22, created_at: '2021-03-27T21:15:22.000000Z', updated_at: '2021-03-27T21:15:22.000000Z', price: 8.9, product: { id: 10, name: Cerveja6, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 30, quantity: 2, product_id: 9, order_id: 22, created_at: '2021-03-27T21:15:22.000000Z', updated_at: '2021-03-27T21:15:22.000000Z', price: 8.9, product: { id: 9, name: Cerveja5, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 31, quantity: 3, product_id: 10, order_id: 23, created_at: '2021-03-27T21:15:30.000000Z', updated_at: '2021-03-27T21:15:30.000000Z', price: 8.9, product: { id: 10, name: Cerveja6, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 32, quantity: 2, product_id: 9, order_id: 23, created_at: '2021-03-27T21:15:30.000000Z', updated_at: '2021-03-27T21:15:30.000000Z', price: 8.9, product: { id: 9, name: Cerveja5, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 33, quantity: 5, product_id: 8, order_id: 23, created_at: '2021-03-27T21:15:30.000000Z', updated_at: '2021-03-27T21:15:30.000000Z', price: 8.9, product: { id: 8, name: Cerveja4, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 34, quantity: 1, product_id: 10, order_id: 24, created_at: '2021-03-27T21:15:55.000000Z', updated_at: '2021-03-27T21:15:55.000000Z', price: 8.9, product: { id: 10, name: Cerveja6, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 35, quantity: 1, product_id: 10, order_id: 25, created_at: '2021-03-27T21:16:03.000000Z', updated_at: '2021-03-27T21:16:03.000000Z', price: 8.9, product: { id: 10, name: Cerveja6, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 36, quantity: 9, product_id: 9, order_id: 25, created_at: '2021-03-27T21:16:03.000000Z', updated_at: '2021-03-27T21:16:03.000000Z', price: 8.9, product: { id: 9, name: Cerveja5, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 37, quantity: 9, product_id: 9, order_id: 26, created_at: '2021-03-27T21:16:47.000000Z', updated_at: '2021-03-27T21:16:47.000000Z', price: 8.9, product: { id: 9, name: Cerveja5, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 38, quantity: 1, product_id: 10, order_id: 26, created_at: '2021-03-27T21:16:47.000000Z', updated_at: '2021-03-27T21:16:47.000000Z', price: 8.9, product: { id: 10, name: Cerveja6, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 39, quantity: 9, product_id: 9, order_id: 27, created_at: '2021-03-27T21:20:24.000000Z', updated_at: '2021-03-27T21:20:24.000000Z', price: 8.9, product: { id: 9, name: Cerveja5, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 40, quantity: 1, product_id: 10, order_id: 27, created_at: '2021-03-27T21:20:24.000000Z', updated_at: '2021-03-27T21:20:24.000000Z', price: 8.9, product: { id: 10, name: Cerveja6, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 41, quantity: 2, product_id: 10, order_id: 28, created_at: '2021-03-27T21:35:53.000000Z', updated_at: '2021-03-27T21:35:53.000000Z', price: 8.9, product: { id: 10, name: Cerveja6, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 42, quantity: 2, product_id: 9, order_id: 29, created_at: '2021-03-27T22:27:20.000000Z', updated_at: '2021-03-27T22:27:20.000000Z', price: 8.9, product: { id: 9, name: Cerveja5, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 43, quantity: 2, product_id: 12, order_id: 30, created_at: '2021-03-27T22:28:23.000000Z', updated_at: '2021-03-27T22:28:23.000000Z', price: 8.9, product: { id: 12, name: Cerveja8, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 44, quantity: 2, product_id: 10, order_id: 31, created_at: '2021-03-27T22:59:14.000000Z', updated_at: '2021-03-27T22:59:14.000000Z', price: 8.9, product: { id: 10, name: Cerveja6, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 45, quantity: 3, product_id: 12, order_id: 31, created_at: '2021-03-27T22:59:14.000000Z', updated_at: '2021-03-27T22:59:14.000000Z', price: 8.9, product: { id: 12, name: Cerveja8, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 46, quantity: 2, product_id: 10, order_id: 32, created_at: '2021-03-27T23:01:14.000000Z', updated_at: '2021-03-27T23:01:14.000000Z', price: 8.9, product: { id: 10, name: Cerveja6, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 47, quantity: 3, product_id: 12, order_id: 32, created_at: '2021-03-27T23:01:14.000000Z', updated_at: '2021-03-27T23:01:14.000000Z', price: 8.9, product: { id: 12, name: Cerveja8, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 48, quantity: 2, product_id: 10, order_id: 33, created_at: '2021-03-27T23:01:30.000000Z', updated_at: '2021-03-27T23:01:30.000000Z', price: 8.9, product: { id: 10, name: Cerveja6, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 49, quantity: 3, product_id: 12, order_id: 33, created_at: '2021-03-27T23:01:30.000000Z', updated_at: '2021-03-27T23:01:30.000000Z', price: 8.9, product: { id: 12, name: Cerveja8, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 50, quantity: 2, product_id: 10, order_id: 34, created_at: '2021-03-27T23:02:08.000000Z', updated_at: '2021-03-27T23:02:08.000000Z', price: 8.9, product: { id: 10, name: Cerveja6, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 51, quantity: 3, product_id: 12, order_id: 34, created_at: '2021-03-27T23:02:08.000000Z', updated_at: '2021-03-27T23:02:08.000000Z', price: 8.9, product: { id: 12, name: Cerveja8, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 52, quantity: 2, product_id: 10, order_id: 35, created_at: '2021-03-27T23:02:52.000000Z', updated_at: '2021-03-27T23:02:52.000000Z', price: 8.9, product: { id: 10, name: Cerveja6, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 53, quantity: 3, product_id: 12, order_id: 35, created_at: '2021-03-27T23:02:52.000000Z', updated_at: '2021-03-27T23:02:52.000000Z', price: 8.9, product: { id: 12, name: Cerveja8, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 54, quantity: 2, product_id: 10, order_id: 36, created_at: '2021-03-27T23:03:52.000000Z', updated_at: '2021-03-27T23:03:52.000000Z', price: 8.9, product: { id: 10, name: Cerveja6, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 55, quantity: 3, product_id: 12, order_id: 36, created_at: '2021-03-27T23:03:52.000000Z', updated_at: '2021-03-27T23:03:52.000000Z', price: 8.9, product: { id: 12, name: Cerveja8, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 56, quantity: 23, product_id: 8, order_id: 37, created_at: '2021-03-27T23:36:06.000000Z', updated_at: '2021-03-27T23:36:06.000000Z', price: 8.9, product: { id: 8, name: Cerveja4, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 57, quantity: 23, product_id: 9, order_id: 37, created_at: '2021-03-27T23:36:06.000000Z', updated_at: '2021-03-27T23:36:06.000000Z', price: 8.9, product: { id: 9, name: Cerveja5, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 58, quantity: 23, product_id: 8, order_id: 38, created_at: '2021-03-27T23:37:01.000000Z', updated_at: '2021-03-27T23:37:01.000000Z', price: 8.9, product: { id: 8, name: Cerveja4, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 59, quantity: 23, product_id: 9, order_id: 38, created_at: '2021-03-27T23:37:01.000000Z', updated_at: '2021-03-27T23:37:01.000000Z', price: 8.9, product: { id: 9, name: Cerveja5, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 60, quantity: 2, product_id: 4, order_id: 39, created_at: '2021-03-27T23:44:03.000000Z', updated_at: '2021-03-27T23:44:03.000000Z', price: 8.9, product: { id: 4, name: Cerveja, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 61, quantity: 3, product_id: 9, order_id: 39, created_at: '2021-03-27T23:44:03.000000Z', updated_at: '2021-03-27T23:44:03.000000Z', price: 8.9, product: { id: 9, name: Cerveja5, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 62, quantity: 2, product_id: 5, order_id: 40, created_at: '2021-03-27T23:48:01.000000Z', updated_at: '2021-03-27T23:48:01.000000Z', price: 8.9, product: { id: 5, name: Cerveja0, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 63, quantity: 2, product_id: 9, order_id: 41, created_at: '2021-03-27T23:50:47.000000Z', updated_at: '2021-03-27T23:50:47.000000Z', price: 8.9, product: { id: 9, name: Cerveja5, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: null }, { id: 64, quantity: 23, product_id: 4, order_id: 42, created_at: '2021-03-28T02:06:17.000000Z', updated_at: '2021-03-28T02:06:17.000000Z', price: 8.9, product: { id: 4, name: Cerveja, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: { id: 42, total: 204.7, discount: 0, commission: 0, commands: '0', client_id: 13, waiter_id: 2, created_at: '2021-03-28T02:06:17.000000Z', updated_at: '2021-03-28T02:06:17.000000Z' } }, { id: 65, quantity: 2, product_id: 9, order_id: 44, created_at: '2021-03-28T03:30:59.000000Z', updated_at: '2021-03-28T03:30:59.000000Z', price: 8.9, product: { id: 9, name: Cerveja5, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: { id: 44, total: 26.7, discount: 0, commission: 0, commands: '0', client_id: 13, waiter_id: 2, created_at: '2021-03-28T03:30:57.000000Z', updated_at: '2021-03-28T03:30:59.000000Z' } }, { id: 66, quantity: 1, product_id: 8, order_id: 44, created_at: '2021-03-28T03:30:59.000000Z', updated_at: '2021-03-28T03:30:59.000000Z', price: 8.9, product: { id: 8, name: Cerveja4, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: { id: 44, total: 26.7, discount: 0, commission: 0, commands: '0', client_id: 13, waiter_id: 2, created_at: '2021-03-28T03:30:57.000000Z', updated_at: '2021-03-28T03:30:59.000000Z' } }, { id: 67, quantity: 22, product_id: 5, order_id: 45, created_at: '2021-03-28T20:03:06.000000Z', updated_at: '2021-03-28T20:03:06.000000Z', price: 8.9, product: { id: 5, name: Cerveja0, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, order: { id: 45, total: 195.8, discount: 0, commission: 0, commands: '0', client_id: 13, waiter_id: 2, created_at: '2021-03-28T20:03:06.000000Z', updated_at: '2021-03-28T20:03:06.000000Z' } }], items: { type: object } }
+            tags:
+                - OrdersProducts
+            security: []
+    /api/ordersproduct/new:
+        post:
+            summary: 'Cadastra nova comanda e produto.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses: {  }
+            tags:
+                - OrdersProducts
+            security: []
+    '/api/ordersproduct/show/{order}':
+        get:
+            summary: 'Retorna comanda produto por id passado'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                200:
+                    description: ''
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    data: { product: null, order: null }
+                                properties:
+                                    data: { type: object, example: { product: null, order: null } }
+            tags:
+                - OrdersProducts
+            security: []
+        parameters:
+            -
+                in: path
+                name: order
+                description: ''
+                example: asperiores
+                required: true
+                schema:
+                    type: string
+    '/api/ordersproduct/update/{order}':
+        put:
+            summary: 'Atualiza comanda produto por id passado.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses: {  }
+            tags:
+                - OrdersProducts
+            security: []
+        parameters:
+            -
+                in: path
+                name: order
+                description: ''
+                example: nam
+                required: true
+                schema:
+                    type: string
+    '/api/ordersproduct/delete/{order}':
+        delete:
+            summary: 'Deleta comanda produto por id passado.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses: {  }
+            tags:
+                - OrdersProducts
+            security: []
+        parameters:
+            -
+                in: path
+                name: order
+                description: ''
+                example: alias
+                required: true
+                schema:
+                    type: string
+    /api/products/all:
+        get:
+            summary: 'Retorna todos os produtos cadastrados.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                200:
+                    description: ''
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    data: [{ id: 3, name: Cerveja, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, { id: 4, name: Cerveja, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, { id: 5, name: Cerveja0, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, { id: 6, name: Cerveja2, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, { id: 7, name: Cerveja3, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, { id: 8, name: Cerveja4, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, { id: 9, name: Cerveja5, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, { id: 10, name: Cerveja6, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, { id: 11, name: Cerveja7, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, { id: 12, name: Cerveja8, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }]
+                                properties:
+                                    data: { type: array, example: [{ id: 3, name: Cerveja, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, { id: 4, name: Cerveja, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, { id: 5, name: Cerveja0, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, { id: 6, name: Cerveja2, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, { id: 7, name: Cerveja3, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, { id: 8, name: Cerveja4, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, { id: 9, name: Cerveja5, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, { id: 10, name: Cerveja6, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, { id: 11, name: Cerveja7, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }, { id: 12, name: Cerveja8, price: 8.9, created_at: '2021-03-27T14:31:47.000000Z', updated_at: '2021-03-27T14:31:47.000000Z' }], items: { type: object } }
+            tags:
+                - Products
+            security: []
+    /api/products/new:
+        post:
+            summary: 'Cadastra um novo produto.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses: {  }
+            tags:
+                - Products
+            security: []
+    '/api/products/show/{product}':
+        get:
+            summary: 'Mostra um produto por id.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                404:
+                    description: ''
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    message: 'No query results for model [App\Models\Product] sapiente'
+                                    exception: Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+                                    file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Exceptions\Handler.php'
+                                    line: 381
+                                    trace: [{ file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Exceptions\Handler.php', line: 330, function: prepareException, class: Illuminate\Foundation\Exceptions\Handler, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\nunomaduro\collision\src\Adapters\Laravel\ExceptionHandler.php', line: 54, function: render, class: Illuminate\Foundation\Exceptions\Handler, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Pipeline.php', line: 51, function: render, class: NunoMaduro\Collision\Adapters\Laravel\ExceptionHandler, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 172, function: handleException, class: Illuminate\Routing\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php', line: 127, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php', line: 103, function: handleRequest, class: Illuminate\Routing\Middleware\ThrottleRequests, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php', line: 55, function: handleRequestUsingNamedLimiter, class: Illuminate\Routing\Middleware\ThrottleRequests, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Illuminate\Routing\Middleware\ThrottleRequests, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 103, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Router.php', line: 695, function: then, class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Router.php', line: 670, function: runRouteWithinStack, class: Illuminate\Routing\Router, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Router.php', line: 636, function: runRoute, class: Illuminate\Routing\Router, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Router.php', line: 625, function: dispatchToRoute, class: Illuminate\Routing\Router, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php', line: 166, function: dispatch, class: Illuminate\Routing\Router, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 128, function: 'Illuminate\Foundation\Http\{closure}', class: Illuminate\Foundation\Http\Kernel, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php', line: 21, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Illuminate\Foundation\Http\Middleware\TransformsRequest, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php', line: 21, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Illuminate\Foundation\Http\Middleware\TransformsRequest, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ValidatePostSize.php', line: 27, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Illuminate\Foundation\Http\Middleware\ValidatePostSize, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance.php', line: 86, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\fruitcake\laravel-cors\src\HandleCors.php', line: 57, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Fruitcake\Cors\HandleCors, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\fideloper\proxy\src\TrustProxies.php', line: 57, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Fideloper\Proxy\TrustProxies, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 103, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php', line: 141, function: then, class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php', line: 110, function: sendRequestThroughRouter, class: Illuminate\Foundation\Http\Kernel, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php', line: 324, function: handle, class: Illuminate\Foundation\Http\Kernel, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php', line: 305, function: callLaravelOrLumenRoute, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php', line: 76, function: makeApiCall, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php', line: 51, function: makeResponseCall, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php', line: 41, function: makeResponseCallIfEnabledAndNoSuccessResponses, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Generator.php', line: 236, function: __invoke, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Generator.php', line: 172, function: iterateThroughStrategies, class: Knuckles\Scribe\Extracting\Generator, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Generator.php', line: 127, function: fetchResponses, class: Knuckles\Scribe\Extracting\Generator, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Commands\GenerateDocumentation.php', line: 119, function: processRoute, class: Knuckles\Scribe\Extracting\Generator, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Commands\GenerateDocumentation.php', line: 73, function: processRoutes, class: Knuckles\Scribe\Commands\GenerateDocumentation, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php', line: 36, function: handle, class: Knuckles\Scribe\Commands\GenerateDocumentation, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Container\Util.php', line: 40, function: 'Illuminate\Container\{closure}', class: Illuminate\Container\BoundMethod, type: '::' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php', line: 93, function: unwrapIfClosure, class: Illuminate\Container\Util, type: '::' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php', line: 37, function: callBoundMethod, class: Illuminate\Container\BoundMethod, type: '::' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Container\Container.php', line: 611, function: call, class: Illuminate\Container\BoundMethod, type: '::' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Console\Command.php', line: 136, function: call, class: Illuminate\Container\Container, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\symfony\console\Command\Command.php', line: 256, function: execute, class: Illuminate\Console\Command, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Console\Command.php', line: 121, function: run, class: Symfony\Component\Console\Command\Command, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\symfony\console\Application.php', line: 971, function: run, class: Illuminate\Console\Command, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\symfony\console\Application.php', line: 290, function: doRunCommand, class: Symfony\Component\Console\Application, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\symfony\console\Application.php', line: 166, function: doRun, class: Symfony\Component\Console\Application, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Console\Application.php', line: 92, function: run, class: Symfony\Component\Console\Application, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Console\Kernel.php', line: 129, function: run, class: Illuminate\Console\Application, type: '->' }, { file: 'C:\laragon\www\barSrJose\artisan', line: 37, function: handle, class: Illuminate\Foundation\Console\Kernel, type: '->' }]
+                                properties:
+                                    message: { type: string, example: 'No query results for model [App\Models\Product] sapiente' }
+                                    exception: { type: string, example: Symfony\Component\HttpKernel\Exception\NotFoundHttpException }
+                                    file: { type: string, example: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Exceptions\Handler.php' }
+                                    line: { type: integer, example: 381 }
+                                    trace: { type: array, example: [{ file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Exceptions\Handler.php', line: 330, function: prepareException, class: Illuminate\Foundation\Exceptions\Handler, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\nunomaduro\collision\src\Adapters\Laravel\ExceptionHandler.php', line: 54, function: render, class: Illuminate\Foundation\Exceptions\Handler, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Pipeline.php', line: 51, function: render, class: NunoMaduro\Collision\Adapters\Laravel\ExceptionHandler, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 172, function: handleException, class: Illuminate\Routing\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php', line: 127, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php', line: 103, function: handleRequest, class: Illuminate\Routing\Middleware\ThrottleRequests, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php', line: 55, function: handleRequestUsingNamedLimiter, class: Illuminate\Routing\Middleware\ThrottleRequests, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Illuminate\Routing\Middleware\ThrottleRequests, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 103, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Router.php', line: 695, function: then, class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Router.php', line: 670, function: runRouteWithinStack, class: Illuminate\Routing\Router, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Router.php', line: 636, function: runRoute, class: Illuminate\Routing\Router, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Router.php', line: 625, function: dispatchToRoute, class: Illuminate\Routing\Router, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php', line: 166, function: dispatch, class: Illuminate\Routing\Router, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 128, function: 'Illuminate\Foundation\Http\{closure}', class: Illuminate\Foundation\Http\Kernel, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php', line: 21, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Illuminate\Foundation\Http\Middleware\TransformsRequest, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php', line: 21, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Illuminate\Foundation\Http\Middleware\TransformsRequest, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ValidatePostSize.php', line: 27, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Illuminate\Foundation\Http\Middleware\ValidatePostSize, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance.php', line: 86, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\fruitcake\laravel-cors\src\HandleCors.php', line: 57, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Fruitcake\Cors\HandleCors, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\fideloper\proxy\src\TrustProxies.php', line: 57, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Fideloper\Proxy\TrustProxies, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 103, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php', line: 141, function: then, class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php', line: 110, function: sendRequestThroughRouter, class: Illuminate\Foundation\Http\Kernel, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php', line: 324, function: handle, class: Illuminate\Foundation\Http\Kernel, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php', line: 305, function: callLaravelOrLumenRoute, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php', line: 76, function: makeApiCall, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php', line: 51, function: makeResponseCall, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php', line: 41, function: makeResponseCallIfEnabledAndNoSuccessResponses, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Generator.php', line: 236, function: __invoke, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Generator.php', line: 172, function: iterateThroughStrategies, class: Knuckles\Scribe\Extracting\Generator, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Generator.php', line: 127, function: fetchResponses, class: Knuckles\Scribe\Extracting\Generator, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Commands\GenerateDocumentation.php', line: 119, function: processRoute, class: Knuckles\Scribe\Extracting\Generator, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Commands\GenerateDocumentation.php', line: 73, function: processRoutes, class: Knuckles\Scribe\Commands\GenerateDocumentation, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php', line: 36, function: handle, class: Knuckles\Scribe\Commands\GenerateDocumentation, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Container\Util.php', line: 40, function: 'Illuminate\Container\{closure}', class: Illuminate\Container\BoundMethod, type: '::' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php', line: 93, function: unwrapIfClosure, class: Illuminate\Container\Util, type: '::' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php', line: 37, function: callBoundMethod, class: Illuminate\Container\BoundMethod, type: '::' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Container\Container.php', line: 611, function: call, class: Illuminate\Container\BoundMethod, type: '::' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Console\Command.php', line: 136, function: call, class: Illuminate\Container\Container, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\symfony\console\Command\Command.php', line: 256, function: execute, class: Illuminate\Console\Command, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Console\Command.php', line: 121, function: run, class: Symfony\Component\Console\Command\Command, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\symfony\console\Application.php', line: 971, function: run, class: Illuminate\Console\Command, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\symfony\console\Application.php', line: 290, function: doRunCommand, class: Symfony\Component\Console\Application, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\symfony\console\Application.php', line: 166, function: doRun, class: Symfony\Component\Console\Application, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Console\Application.php', line: 92, function: run, class: Symfony\Component\Console\Application, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Console\Kernel.php', line: 129, function: run, class: Illuminate\Console\Application, type: '->' }, { file: 'C:\laragon\www\barSrJose\artisan', line: 37, function: handle, class: Illuminate\Foundation\Console\Kernel, type: '->' }], items: { type: object } }
+            tags:
+                - Products
+            security: []
+        parameters:
+            -
+                in: path
+                name: product
+                description: ''
+                example: sapiente
+                required: true
+                schema:
+                    type: string
+    '/api/products/update/{product}':
+        put:
+            summary: 'Atualiza produto por id passado.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses: {  }
+            tags:
+                - Products
+            security: []
+        parameters:
+            -
+                in: path
+                name: product
+                description: ''
+                example: ut
+                required: true
+                schema:
+                    type: string
+    '/api/products/delete/{product}':
+        delete:
+            summary: 'Deleta produto por id passado.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses: {  }
+            tags:
+                - Products
+            security: []
+        parameters:
+            -
+                in: path
+                name: product
+                description: ''
+                example: nesciunt
+                required: true
+                schema:
+                    type: string
+    /api/waiters/all:
+        get:
+            summary: 'Retornar todos os funcionários.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                200:
+                    description: ''
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    data: [{ id: 2, name: 'Cícero Fahning', email: cicerofahning@hotmail.com, phone: '82999384018', role: garçom, created_at: '2021-03-27T13:57:37.000000Z', updated_at: '2021-03-27T13:57:37.000000Z' }]
+                                properties:
+                                    data: { type: array, example: [{ id: 2, name: 'Cícero Fahning', email: cicerofahning@hotmail.com, phone: '82999384018', role: garçom, created_at: '2021-03-27T13:57:37.000000Z', updated_at: '2021-03-27T13:57:37.000000Z' }], items: { type: object } }
+            tags:
+                - Waiters
+            security: []
+    /api/waiters/new:
+        post:
+            summary: 'Salva novo funcionário.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses: {  }
+            tags:
+                - Waiters
+            security: []
+    '/api/waiters/show/{waiter}':
+        get:
+            summary: 'Mostra um funcionário por id.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                404:
+                    description: ''
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    message: 'No query results for model [App\Models\Waiter] sit'
+                                    exception: Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+                                    file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Exceptions\Handler.php'
+                                    line: 381
+                                    trace: [{ file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Exceptions\Handler.php', line: 330, function: prepareException, class: Illuminate\Foundation\Exceptions\Handler, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\nunomaduro\collision\src\Adapters\Laravel\ExceptionHandler.php', line: 54, function: render, class: Illuminate\Foundation\Exceptions\Handler, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Pipeline.php', line: 51, function: render, class: NunoMaduro\Collision\Adapters\Laravel\ExceptionHandler, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 172, function: handleException, class: Illuminate\Routing\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php', line: 127, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php', line: 103, function: handleRequest, class: Illuminate\Routing\Middleware\ThrottleRequests, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php', line: 55, function: handleRequestUsingNamedLimiter, class: Illuminate\Routing\Middleware\ThrottleRequests, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Illuminate\Routing\Middleware\ThrottleRequests, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 103, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Router.php', line: 695, function: then, class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Router.php', line: 670, function: runRouteWithinStack, class: Illuminate\Routing\Router, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Router.php', line: 636, function: runRoute, class: Illuminate\Routing\Router, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Router.php', line: 625, function: dispatchToRoute, class: Illuminate\Routing\Router, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php', line: 166, function: dispatch, class: Illuminate\Routing\Router, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 128, function: 'Illuminate\Foundation\Http\{closure}', class: Illuminate\Foundation\Http\Kernel, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php', line: 21, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Illuminate\Foundation\Http\Middleware\TransformsRequest, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php', line: 21, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Illuminate\Foundation\Http\Middleware\TransformsRequest, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ValidatePostSize.php', line: 27, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Illuminate\Foundation\Http\Middleware\ValidatePostSize, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance.php', line: 86, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\fruitcake\laravel-cors\src\HandleCors.php', line: 57, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Fruitcake\Cors\HandleCors, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\fideloper\proxy\src\TrustProxies.php', line: 57, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Fideloper\Proxy\TrustProxies, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 103, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php', line: 141, function: then, class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php', line: 110, function: sendRequestThroughRouter, class: Illuminate\Foundation\Http\Kernel, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php', line: 324, function: handle, class: Illuminate\Foundation\Http\Kernel, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php', line: 305, function: callLaravelOrLumenRoute, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php', line: 76, function: makeApiCall, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php', line: 51, function: makeResponseCall, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php', line: 41, function: makeResponseCallIfEnabledAndNoSuccessResponses, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Generator.php', line: 236, function: __invoke, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Generator.php', line: 172, function: iterateThroughStrategies, class: Knuckles\Scribe\Extracting\Generator, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Generator.php', line: 127, function: fetchResponses, class: Knuckles\Scribe\Extracting\Generator, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Commands\GenerateDocumentation.php', line: 119, function: processRoute, class: Knuckles\Scribe\Extracting\Generator, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Commands\GenerateDocumentation.php', line: 73, function: processRoutes, class: Knuckles\Scribe\Commands\GenerateDocumentation, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php', line: 36, function: handle, class: Knuckles\Scribe\Commands\GenerateDocumentation, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Container\Util.php', line: 40, function: 'Illuminate\Container\{closure}', class: Illuminate\Container\BoundMethod, type: '::' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php', line: 93, function: unwrapIfClosure, class: Illuminate\Container\Util, type: '::' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php', line: 37, function: callBoundMethod, class: Illuminate\Container\BoundMethod, type: '::' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Container\Container.php', line: 611, function: call, class: Illuminate\Container\BoundMethod, type: '::' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Console\Command.php', line: 136, function: call, class: Illuminate\Container\Container, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\symfony\console\Command\Command.php', line: 256, function: execute, class: Illuminate\Console\Command, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Console\Command.php', line: 121, function: run, class: Symfony\Component\Console\Command\Command, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\symfony\console\Application.php', line: 971, function: run, class: Illuminate\Console\Command, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\symfony\console\Application.php', line: 290, function: doRunCommand, class: Symfony\Component\Console\Application, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\symfony\console\Application.php', line: 166, function: doRun, class: Symfony\Component\Console\Application, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Console\Application.php', line: 92, function: run, class: Symfony\Component\Console\Application, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Console\Kernel.php', line: 129, function: run, class: Illuminate\Console\Application, type: '->' }, { file: 'C:\laragon\www\barSrJose\artisan', line: 37, function: handle, class: Illuminate\Foundation\Console\Kernel, type: '->' }]
+                                properties:
+                                    message: { type: string, example: 'No query results for model [App\Models\Waiter] sit' }
+                                    exception: { type: string, example: Symfony\Component\HttpKernel\Exception\NotFoundHttpException }
+                                    file: { type: string, example: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Exceptions\Handler.php' }
+                                    line: { type: integer, example: 381 }
+                                    trace: { type: array, example: [{ file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Exceptions\Handler.php', line: 330, function: prepareException, class: Illuminate\Foundation\Exceptions\Handler, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\nunomaduro\collision\src\Adapters\Laravel\ExceptionHandler.php', line: 54, function: render, class: Illuminate\Foundation\Exceptions\Handler, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Pipeline.php', line: 51, function: render, class: NunoMaduro\Collision\Adapters\Laravel\ExceptionHandler, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 172, function: handleException, class: Illuminate\Routing\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php', line: 127, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php', line: 103, function: handleRequest, class: Illuminate\Routing\Middleware\ThrottleRequests, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php', line: 55, function: handleRequestUsingNamedLimiter, class: Illuminate\Routing\Middleware\ThrottleRequests, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Illuminate\Routing\Middleware\ThrottleRequests, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 103, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Router.php', line: 695, function: then, class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Router.php', line: 670, function: runRouteWithinStack, class: Illuminate\Routing\Router, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Router.php', line: 636, function: runRoute, class: Illuminate\Routing\Router, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Routing\Router.php', line: 625, function: dispatchToRoute, class: Illuminate\Routing\Router, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php', line: 166, function: dispatch, class: Illuminate\Routing\Router, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 128, function: 'Illuminate\Foundation\Http\{closure}', class: Illuminate\Foundation\Http\Kernel, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php', line: 21, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Illuminate\Foundation\Http\Middleware\TransformsRequest, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php', line: 21, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Illuminate\Foundation\Http\Middleware\TransformsRequest, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ValidatePostSize.php', line: 27, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Illuminate\Foundation\Http\Middleware\ValidatePostSize, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance.php', line: 86, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\fruitcake\laravel-cors\src\HandleCors.php', line: 57, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Fruitcake\Cors\HandleCors, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\fideloper\proxy\src\TrustProxies.php', line: 57, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Fideloper\Proxy\TrustProxies, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 103, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php', line: 141, function: then, class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php', line: 110, function: sendRequestThroughRouter, class: Illuminate\Foundation\Http\Kernel, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php', line: 324, function: handle, class: Illuminate\Foundation\Http\Kernel, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php', line: 305, function: callLaravelOrLumenRoute, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php', line: 76, function: makeApiCall, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php', line: 51, function: makeResponseCall, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php', line: 41, function: makeResponseCallIfEnabledAndNoSuccessResponses, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Generator.php', line: 236, function: __invoke, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Generator.php', line: 172, function: iterateThroughStrategies, class: Knuckles\Scribe\Extracting\Generator, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Extracting\Generator.php', line: 127, function: fetchResponses, class: Knuckles\Scribe\Extracting\Generator, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Commands\GenerateDocumentation.php', line: 119, function: processRoute, class: Knuckles\Scribe\Extracting\Generator, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\knuckleswtf\scribe\src\Commands\GenerateDocumentation.php', line: 73, function: processRoutes, class: Knuckles\Scribe\Commands\GenerateDocumentation, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php', line: 36, function: handle, class: Knuckles\Scribe\Commands\GenerateDocumentation, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Container\Util.php', line: 40, function: 'Illuminate\Container\{closure}', class: Illuminate\Container\BoundMethod, type: '::' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php', line: 93, function: unwrapIfClosure, class: Illuminate\Container\Util, type: '::' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php', line: 37, function: callBoundMethod, class: Illuminate\Container\BoundMethod, type: '::' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Container\Container.php', line: 611, function: call, class: Illuminate\Container\BoundMethod, type: '::' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Console\Command.php', line: 136, function: call, class: Illuminate\Container\Container, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\symfony\console\Command\Command.php', line: 256, function: execute, class: Illuminate\Console\Command, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Console\Command.php', line: 121, function: run, class: Symfony\Component\Console\Command\Command, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\symfony\console\Application.php', line: 971, function: run, class: Illuminate\Console\Command, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\symfony\console\Application.php', line: 290, function: doRunCommand, class: Symfony\Component\Console\Application, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\symfony\console\Application.php', line: 166, function: doRun, class: Symfony\Component\Console\Application, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Console\Application.php', line: 92, function: run, class: Symfony\Component\Console\Application, type: '->' }, { file: 'C:\laragon\www\barSrJose\vendor\laravel\framework\src\Illuminate\Foundation\Console\Kernel.php', line: 129, function: run, class: Illuminate\Console\Application, type: '->' }, { file: 'C:\laragon\www\barSrJose\artisan', line: 37, function: handle, class: Illuminate\Foundation\Console\Kernel, type: '->' }], items: { type: object } }
+            tags:
+                - Waiters
+            security: []
+        parameters:
+            -
+                in: path
+                name: waiter
+                description: ''
+                example: sit
+                required: true
+                schema:
+                    type: string
+    '/api/waiters/update/{waiter}':
+        put:
+            summary: 'Atualiza funcionário por id passado'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses: {  }
+            tags:
+                - Waiters
+            security: []
+        parameters:
+            -
+                in: path
+                name: waiter
+                description: ''
+                example: sequi
+                required: true
+                schema:
+                    type: string
+    '/api/waiters/delete/{waiter}':
+        delete:
+            summary: 'Deleta funcionário por id passado.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses: {  }
+            tags:
+                - Waiters
+            security: []
+        parameters:
+            -
+                in: path
+                name: waiter
+                description: ''
+                example: dolor
+                required: true
+                schema:
+                    type: string

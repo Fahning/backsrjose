@@ -12,6 +12,11 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Facades\DB;
 
+/**
+ * @group Orders
+ *
+ * APIs para gerenciar Orders
+ */
 class OrderController extends Controller
 {
     /**

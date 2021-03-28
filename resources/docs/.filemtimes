@@ -1,0 +1,10 @@
+# GENERATED. YOU SHOULDN'T MODIFY OR DELETE THIS FILE.
+# Scribe uses this file to know when you change something manually in your docs.
+resources/docs/index.md=1616975659
+resources/docs/authentication.md=1616975659
+resources/docs/groups/endpoints.md=1616975537
+resources/docs/groups/clients.md=1616975659
+resources/docs/groups/orders.md=1616975659
+resources/docs/groups/ordersproducts.md=1616975659
+resources/docs/groups/products.md=1616975659
+resources/docs/groups/waiters.md=1616975659

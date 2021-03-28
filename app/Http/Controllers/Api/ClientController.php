@@ -8,6 +8,11 @@ use App\Models\Client;
 use Exception;
 use Illuminate\Http\Request;
 
+/**
+ * @group Clients
+ *
+ * APIs para gerenciar Clients
+ */
 class ClientController extends Controller
 {
     /**
