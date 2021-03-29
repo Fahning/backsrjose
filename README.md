@@ -60,6 +60,8 @@ php artisan serve
 Para iniciar acessar a documentação do projeto execute o comando abaixo:
 
 ```shell
-cd "Diretório 'www' dentro da pasta raiz do laragon"
-git https://github.com/Fahning/backsrjose
+cd "diretorio do projeto"
+php artisan serve
+"caso necessario"
+php artisan scribe:generate
 ```
