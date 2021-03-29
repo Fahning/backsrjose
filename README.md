@@ -65,3 +65,5 @@ php artisan serve
 "caso necessario"
 php artisan scribe:generate
 ```
+
+Depois acesse o link do projeto com '/docs' no final.
