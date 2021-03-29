@@ -63,9 +63,7 @@ class ClientController extends Controller
         $phone = '%'.$phone.'%';
         $client = Client::where('phone', 'like', $phone)->get();
         if(count($client) <= 0){
-            $client = [
-                'Falha' => 'Cliente não cadastrado'
-            ];
+            $client = ['Falha' => 'Cliente não cadastrado'];
         }
         return new ClientResource($client);
     }
