@@ -13,6 +13,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Facades\DB;
+use function PHPUnit\Framework\isEmpty;
 
 /**
  * @group Orders
@@ -42,6 +43,11 @@ class OrderController extends Controller
     {
         $orders = new OrderRepository();
         return response()->json($orders->getSellsResume(), 200);
+    }
+    public function sellsProducts($product_id): JsonResponse
+    {
+        $orders = new OrderRepository();
+        return response()->json($orders->sellsProducts($product_id), 200);
     }
 
 

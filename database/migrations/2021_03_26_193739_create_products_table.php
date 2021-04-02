@@ -17,7 +17,13 @@ class CreateProductsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->double('price');
+            $table->integer('stock');
+            $table->unsignedBigInteger('category_id');
             $table->timestamps();
+        });
+
+        Schema::table('products', function (Blueprint $table) {
+           $table->foreign('category_id')->references('id')->on('categories');
         });
     }
 

@@ -52,6 +52,18 @@ class ProductController extends Controller
     }
 
     /**
+     * Mostra um produto por id.
+     *
+     * @param $id
+     * @return ProductResource
+     */
+    public function byCategory($id): ProductResource
+    {
+        $products = Product::where('category_id', $id)->get();
+        return new ProductResource($products);
+    }
+
+    /**
      * Atualiza produto por id passado.
      *
      * @param Request $request

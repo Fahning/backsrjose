@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ClientRequest;
 use App\Http\Resources\ClientResource;
 use App\Models\Client;
 use Exception;
@@ -28,10 +29,10 @@ class ClientController extends Controller
     /**
      * Cadastra um novo cliente.
      *
-     * @param Request $request
+     * @param ClientRequest $request
      * @return ClientResource
      */
-    public function store(Request $request): ClientResource
+    public function store(ClientRequest $request): ClientResource
     {
         $data = $request->all();
         $client = new Client();
